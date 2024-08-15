@@ -1,0 +1,101 @@
+/* Contenedor principal */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.container_nav {
+  width: 100%;
+}
+
+/* Estilo de la tabla */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.thead th {
+  background-color: #9e2d49;
+  color: #feffd5;
+  text-align: left;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.tbody td {
+  padding: 10px;
+  max-width: 150px; /* Limita el ancho máximo a 50px */
+  white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
+  overflow: hidden; /* Oculta el texto que desborda */
+  text-overflow: ellipsis; /* Muestra los "..." cuando el texto es muy largo */
+  max-height: 20px;
+
+}
+
+.tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Botones dentro de la tabla */
+.button {
+  background-color: var(--primary-color);
+  color: #feffd5;
+  border: none;
+  padding: 8px 12px;
+  margin: 0 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #9e2d49;
+}
+
+/* Contenedor para niveles */
+.container_levels {
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px 0;
+}
+
+.container_new_level {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #6e6c6c7a;
+}
+
+/* Contenedor para unidades */
+.container_unities {
+  margin-top: 20px;
+  width: 100%;
+}
+
+/* Títulos y descripción */
+.title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.description {
+  color: #210110;
+  margin-top: 5px;
+}
+
+.order {
+  color: #d3c4a5;
+  font-size: 16px;
+}
+
+/* Mensaje de error */
+.error {
+  color: red;
+  margin-top: 20px;
+  text-align: center;
+}
