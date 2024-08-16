@@ -6,7 +6,7 @@ import AuthGuard from "./guards/auth.guard";
 import Private from "./pages/private/private";
 import { Provider } from "react-redux";
 import store from "./redux/store";
-import Login from "./pages/public/Login/Login";
+import Public from "./pages/public/public";
 
 function App() {
   return (
@@ -24,8 +24,7 @@ function App() {
               }
             />
 
-            <Route path="singup" element={<h1>Registrarce</h1>} />
-            <Route path={`${PublicRoutes.LOGIN}/`} element={<Login />} />
+            <Route path={`${PublicRoutes.PUBLIC}/*`} element={<Public />} />
 
             <Route element={<AuthGuard privateValidation={true} />}>
               <Route

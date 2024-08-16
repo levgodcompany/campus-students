@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../../redux/hooks";
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { login } from "./types/login.types";
 import styles from "./Login.module.css";
 import LoginService from "./services/Login.service";
-import { loginSuccess } from "../../../redux/slices/auth.slice";
+import { loginSuccess, logout } from "../../../redux/slices/auth.slice";
 import { PrivateRoutes } from "../../../routes/routes";
 
 const Login = () => {
@@ -15,6 +15,10 @@ const Login = () => {
     password: "LJVinformatica14",
   });
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    dispatch(logout());
+  }, []);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -28,11 +32,11 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await LoginService.login(formData);
-      dispatch(loginSuccess({token: res.token}))
+      dispatch(loginSuccess({ token: res.token }));
       // Dispatch login action here, e.g., dispatch(loginAction(formData))
       // Assuming loginAction is a thunk or action creator that handles the login process
       // const response = await dispatch(loginAction(formData));
-      
+
       // For demonstration purposes, assuming a successful login:
       // if (response.success) {
       //   navigate('/dashboard'); // Redirect to dashboard or other page on success

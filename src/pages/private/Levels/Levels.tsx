@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import Sidebar from "../../../components/Sidebar/Sidebar";
 import { levelDto } from "./types/Levels.types";
 import LevelsService from "./services/Levels.service";
 import MessageError from "../../../components/ConfirCancelReservation/MessageError";
 import style from "./Levels.module.css";
-import Wizard from "./components/Wizard/Wizard";
 import { useNavigate } from "react-router-dom";
 import { PrivateRoutes } from "../../../routes/routes";
 import Navigation from "../../../components/Navigation/Navigation";
@@ -15,12 +13,12 @@ import {
   updatePage,
 } from "../../../redux/slices/Navigations.slice";
 import Exam from "./components/Exam/Exam";
+import Header from "../../../components/Header/Header";
 
 const Levels = () => {
   const [levels, setLevels] = useState<levelDto[]>([]);
-  const [levelSelect, setLevelSelect] = useState<levelDto | null>(null);
+  const [levelSelect, _setLevelSelect] = useState<levelDto | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [newLevel, setNewLevel] = useState<boolean>(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -45,21 +43,7 @@ const Levels = () => {
     }
   };
 
-  const fetchLevelsDelete = async (id: number) => {
-    try {
-      await LevelsService.crud().delete(id);
-      await fetchLevels();
-      // setLevels(result);
-    } catch (error) {
-      setError(`${error}`);
-    }
-  };
-
-  const handleOnClickNewLevel = () => {
-    setNewLevel(!newLevel);
-  };
-
-  const next = (level: levelDto) => {
+  const handleCardClick = (level: levelDto) => {
     const url = `/${PrivateRoutes.PRIVATE}/${PrivateRoutes.UNITIES}/${level.id}/${level.title}`;
     dispatch(
       updatePage({
@@ -79,12 +63,12 @@ const Levels = () => {
 
   return (
     <div className={style.container}>
+      <Header />
       <div className={style.container_nav}>
         <Navigation />
       </div>
-      <Sidebar />
 
-      <h1>Niveles</h1>
+      <h1 className={style.title}>Niveles</h1>
 
       {error && (
         <MessageError
@@ -94,72 +78,26 @@ const Levels = () => {
         />
       )}
 
-      <div className={style.container_levels}>
+      <div className={style.cardContainer}>
         {levels.length > 0 ? (
-          <table className={style.table}>
-            <thead className={style.thead}>
-              <tr>
-                <th>Título</th>
-                <th>Descripción</th>
-                <th>Orden</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody className={style.tbody}>
-              {levels
-                .sort((a, b) => a.order - b.order)
-                .map((level) => (
-                  <tr key={level.id}>
-                    <td>{level.title}</td>
-                    <td>{level.description}</td>
-                    <td>{level.order}</td>
-                    <td>
-                      <button
-                        onClick={() => fetchLevelsDelete(level.id)}
-                        className={style.button}
-                      >
-                        Eliminar
-                      </button>
-                      <button
-                        onClick={() => setLevelSelect(level)}
-                        className={style.button}
-                      >
-                        Examenes
-                      </button>
-                      <button className={style.button}>Editar</button>
-                      <button
-                        onClick={() => next(level)}
-                        className={style.button}
-                      >
-                        Unidades
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
+          levels
+            .sort((a, b) => a.order - b.order)
+            .map((level) => (
+              <div onClick={() => handleCardClick(level)} key={level.id} className={style.card}>
+                <h2 className={style.cardTitle}>{level.title}</h2>
+                <p className={style.cardDescription}>{level.description}</p>
+                <div className={style.cardActions}>
+                </div>
+              </div>
+            ))
         ) : (
           <p>No hay niveles disponibles</p>
         )}
-        <div>
-          <button className={style.button} onClick={handleOnClickNewLevel}>
-            Agregar Nivel
-          </button>
-        </div>
       </div>
 
-      {newLevel && (
-        <div className={style.container_new_level}>
-          <Wizard close={handleOnClickNewLevel} />
-        </div>
-      )}
       {levelSelect ? (
-        <>
-          <Exam idLevel={levelSelect.id} />
-        </>
-      ) : (
-        <></>
-      )}
+        <Exam idLevel={levelSelect.id} />
+      ) : null}
     </div>
   );
 };

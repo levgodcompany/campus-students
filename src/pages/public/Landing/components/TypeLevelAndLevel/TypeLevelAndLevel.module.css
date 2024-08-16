@@ -1,0 +1,81 @@
+.landingContainer {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mainTitle {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #333;
+}
+
+.mainDescription {
+  font-size: 18px;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #555;
+}
+
+.typeLevelCard {
+  background-color: #9d9d9d;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.typeLevelTitle {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.typeLevelDescription {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.levelsContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.levelCard {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  padding: 1rem;
+  height: 220px;
+}
+
+.containerLevelTitle {
+    border-bottom: 1px solid #5a5959;
+    padding: 5px;
+    text-align: center;
+}
+
+.levelTitle {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+  
+}
+
+.contaienerLevelDescription {
+    padding: 5px;
+}
+
+.levelDescription {
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: #5a5959;
+}

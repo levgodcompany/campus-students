@@ -10,11 +10,17 @@ interface ViewStudentProps {
 }
 
 const ViewStudent: React.FC<ViewStudentProps> = ({ idUnit }) => {
-  const [coursesAndModules, setCoursesAndModules] = useState<CourseAndModules[]>([]);
-  const [moduleSelect, setModuleSelet] = useState<{ url: string; title: string, description: string }>({
+  const [coursesAndModules, setCoursesAndModules] = useState<
+    CourseAndModules[]
+  >([]);
+  const [moduleSelect, setModuleSelet] = useState<{
+    url: string;
+    title: string;
+    description: string;
+  }>({
     title: "",
     url: "",
-    description: ""
+    description: "",
   });
 
   useEffect(() => {
@@ -36,7 +42,11 @@ const ViewStudent: React.FC<ViewStudentProps> = ({ idUnit }) => {
   return (
     <div className={style.container}>
       <div className={style.container_video}>
-        <ViewVideo title={moduleSelect.title} url={moduleSelect.url} description={moduleSelect.description} />
+        <ViewVideo
+          title={moduleSelect.title}
+          url={moduleSelect.url}
+          description={moduleSelect.description}
+        />
       </div>
       <div className={style.list_video}>
         {coursesAndModules.length ? (

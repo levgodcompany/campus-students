@@ -1,4 +1,6 @@
 export const PublicRoutes = {
+  PUBLIC: "in-english",
+  LANDING: "landing",
   LOGIN: "singin",
   SINGUP: "singup",
   FORGOT_PASSWORD: "forgot-password",
@@ -16,6 +18,7 @@ export const PrivateRoutes = {
 };
 
 export const PrivateRoutesHttp = {
+  LANDING: "landing",
   LEVELS: "levels",
   UNITIES: "unities",
   COURSES: "courses",

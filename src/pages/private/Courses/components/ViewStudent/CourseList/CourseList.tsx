@@ -6,53 +6,51 @@ import { Module } from "../../../../types/Modules.types";
 type CourseListProps = {
   course: CourseAndModules;
   setModuleSelet: (moduleSelect: {
-    url: string,
-    title: string,
-    description: string
+    url: string;
+    title: string;
+    description: string;
   }) => void;
 };
 
 const CourseList: React.FC<CourseListProps> = ({ course, setModuleSelet }) => {
   const sortedModules = course.modules.sort((a, b) => a.order - b.order);
 
-  const handleSelect = (module: Module)=> {
-    if(module.typeFile && module.fileURL){
+  const handleSelect = (module: Module) => {
+    if (module.typeFile && module.fileURL) {
       switch (module.typeFile) {
-        case 'pdf':
+        case "pdf":
           // Lógica para manejar archivos PDF
           setModuleSelet({
             title: module.title,
             url: "",
-            description: module.description
-          })
+            description: module.description,
+          });
           // Aquí podrías establecer un estado o realizar otra acción específica para PDFs
           break;
-          
-        case 'video':
+
+        case "video":
           // Lógica para manejar archivos de video
           setModuleSelet({
             title: module.title,
             url: module.fileURL ? module.fileURL : "",
-            description: module.description
-          })
+            description: module.description,
+          });
           // Aquí podrías establecer un estado o realizar otra acción específica para videos
           break;
-          
-        case 'link':
+
+        case "link":
           // Lógica para manejar enlaces
-          console.log('Handling link');
+          console.log("Handling link");
           // Aquí podrías establecer un estado o realizar otra acción específica para enlaces
           break;
-          
+
         default:
-          console.log('Unknown file type');
+          console.log("Unknown file type");
           // Manejo para tipos de archivo desconocidos
           break;
       }
     }
-   
-  }
-
+  };
 
   return (
     <div className={styles.container}>
@@ -63,7 +61,11 @@ const CourseList: React.FC<CourseListProps> = ({ course, setModuleSelet }) => {
         {sortedModules
           .sort((a, b) => a.order - b.order)
           .map((module) => (
-            <li onClick={()=> handleSelect(module)} key={module.id} className={styles.moduleItem}>
+            <li
+              onClick={() => handleSelect(module)}
+              key={module.id}
+              className={styles.moduleItem}
+            >
               <div className={styles.moduleInfo}>
                 <p className={styles.title}>{module.title}</p>
                 {/* <span className={styles.typeFile}>Type: {module.typeFile}</span> */}
