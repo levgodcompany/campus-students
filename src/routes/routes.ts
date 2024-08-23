@@ -1,13 +1,14 @@
 export const PublicRoutes = {
-  PUBLIC: "in-english",
+  PUBLIC: "in-house",
   LANDING: "landing",
+  LEVEL: "level",
   LOGIN: "singin",
   SINGUP: "singup",
   FORGOT_PASSWORD: "forgot-password",
 };
 
 export const PrivateRoutes = {
-  PRIVATE: "in-english-campus",
+  PRIVATE: "in-house-campus",
   DASHBOARD: "dashboard",
   LEVELS: "level",
   UNITIES: "unities",

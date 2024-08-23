@@ -1,0 +1,155 @@
+.levelContainer {
+  padding: 50px;
+  border-radius: 8px;
+}
+
+.levelContainerTitle{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 20px;
+  /* border: 1px solid #fff; */
+  border-radius: 10px;
+}
+
+.levelTitle {
+  font-weight: 900;
+  font-size: 2.5rem;
+  line-height: 2.75rem;
+  margin: 0 0 .5rem;
+  color: #fff;
+}
+
+.teacherTitle {
+  font-weight: 900;
+  font-style: normal;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  text-align: center;
+}
+
+.levelDescription {
+  font-size: 1.2em;
+  color: #bebebe;
+  margin-bottom: 20px;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  margin: 0 0 1.5rem;
+}
+
+.cohortsTitle {
+  font-size: 2.25rem;
+  line-height: 2.75rem;
+  text-align: center;
+  margin-bottom: 2.25rem;
+}
+
+.cohortsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  flex-direction: row;
+  margin: 10px 0 65px 0;
+  justify-content: center;
+}
+
+.cohortCard {
+  border: 1px solid #393b43;
+  padding: 15px;
+  border-radius: 3px;
+}
+
+.cohortTitle {
+  font-size: 1.3em;
+  color: #bebebe;
+  margin: 0;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #262626;
+}
+
+.cohortTitleCloseIscription {
+  margin: 0;
+  font-size: 10px;
+  padding: 5px 15px;
+  background-color: #262626;
+  border-radius: 25px;
+  font-weight: 500;
+}
+
+.cohortDescription {
+  font-size: 1em;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.dates {
+  font-size: 0.9em;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.datesDate {
+  padding: 1rem;
+  --tw-border-opacity: 1;
+  border-right-width: 2px;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity));
+}
+
+.datesDate_title {
+  font-weight: 500;
+  margin: 0;
+  color: #bebebe;
+}
+
+.datesDate_date {
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 2.5rem;
+  margin: 0;
+  color: #fafafa;
+}
+
+.datesDateButton {
+  padding: 0.75rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  border-radius: 9999px;
+  background-color: #262626;
+  color: #fff;
+}
+
+
+.levelContainerPlans {
+
+}
+
+.ContainerPlansTitle {
+  font-size: 2.25rem;
+  line-height: 2.75rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.ContainerPlansDescription {
+  font-size: 1.25rem;
+  line-height: 1.875rem;
+  color: #bebebe;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: 400;
+  font-style: normal;
+}

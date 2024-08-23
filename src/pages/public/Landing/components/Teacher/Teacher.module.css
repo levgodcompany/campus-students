@@ -1,0 +1,55 @@
+/* Teacher.module.css */
+
+.teacherContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.teacherCard {
+  overflow: hidden;
+  
+  text-align: center;
+}
+
+.imageContainer {
+    padding: 15px 8px;
+    display: flex;
+    justify-content: center;
+    width: 160px;
+}
+
+.teacherImage {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    max-width: 100%;
+    display: block;
+    vertical-align: middle;
+    border: 3px solid #262626;
+    box-shadow: -0px 0px 3px 1px #262626;
+}
+
+.teacherInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.teacherName {
+    margin: 4px 0;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 900;
+}
+
+.teacherLastName {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+  text-transform: uppercase;
+}

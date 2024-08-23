@@ -6,15 +6,17 @@ import styles from "./Login.module.css";
 import LoginService from "./services/Login.service";
 import { loginSuccess, logout } from "../../../redux/slices/auth.slice";
 import { PrivateRoutes } from "../../../routes/routes";
+import Header from "../../../components/Header/Header";
 
 const Login = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [formData, setFormData] = useState<login>({
-    email: "leandroveroninf@gmail.com",
-    password: "LJVinformatica14",
+    email: "",
+    password: "",
   });
   const [error, setError] = useState<string | null>(null);
+  const [isForgotPassword, setIsForgotPassword] = useState<boolean>(false);
 
   useEffect(() => {
     dispatch(logout());
@@ -31,31 +33,25 @@ const Login = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const res = await LoginService.login(formData);
-      dispatch(loginSuccess({ token: res.token }));
-      // Dispatch login action here, e.g., dispatch(loginAction(formData))
-      // Assuming loginAction is a thunk or action creator that handles the login process
-      // const response = await dispatch(loginAction(formData));
+      if(isForgotPassword){
+        alert(`Tu contraseña es ( asdñfj asdfñkj asdf s )`)
+      }else {
+        const res = await LoginService.login(formData);
+        dispatch(loginSuccess({ token: res.token }));
+        navigate(`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.LEVELS}`);
 
-      // For demonstration purposes, assuming a successful login:
-      // if (response.success) {
-      //   navigate('/dashboard'); // Redirect to dashboard or other page on success
-      // }
-
-      // Mock success for demonstration
-      navigate(`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.LEVELS}`);
+      }
     } catch (err) {
       setError("Login failed. Please check your credentials.");
     }
   };
 
-  return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Login</h1>
+  const viewLogin = () => {
+    return (
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.formGroup}>
           <label htmlFor="email" className={styles.label}>
-            Email
+            Correo electrónico
           </label>
           <input
             type="email"
@@ -64,12 +60,13 @@ const Login = () => {
             value={formData.email}
             onChange={handleChange}
             className={styles.input}
+            placeholder="Ingresa tu correo electrónico"
             required
           />
         </div>
         <div className={styles.formGroup}>
           <label htmlFor="password" className={styles.label}>
-            Password
+            Contraseña
           </label>
           <input
             type="password"
@@ -78,15 +75,62 @@ const Login = () => {
             value={formData.password}
             onChange={handleChange}
             className={styles.input}
+            placeholder="Ingresa tu contraseña"
             required
           />
         </div>
         {error && <p className={styles.error}>{error}</p>}
         <button type="submit" className={styles.button}>
-          Login
+          Iniciar sesión
+        </button>
+        <button className={styles.buttonCancel} onClick={() => setIsForgotPassword(true)}>
+          Olvidé mi contraseña
         </button>
       </form>
-    </div>
+    );
+  };
+
+  const viewIsForgotPassword = () => {
+    return (
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <div className={styles.formGroup}>
+          <h3 className={styles.formGroupTitle}>Restablecer contraseña</h3>
+          <h2 className={styles.formGroupSubTitle}>
+            Ingresa tu correo electrónico y te enviaremos un código para
+            restablecerla.
+          </h2>
+          <label htmlFor="email" className={styles.label}>
+            Correo electrónico
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            autoComplete=""
+            value={formData.email}
+            onChange={handleChange}
+            className={styles.input}
+            placeholder="Ingresa tu correo electrónico"
+            required
+          />
+        </div>
+
+        {error && <p className={styles.error}>{error}</p>}
+        <button type="submit" className={styles.button}>
+          Enviar código
+        </button>
+        <button className={styles.buttonCancel} onClick={() => setIsForgotPassword(false)}>Cancelar</button>
+      </form>
+    );
+  };
+
+  return (
+    <>
+      <Header />
+      <div className={styles.container}>
+        {isForgotPassword ? viewIsForgotPassword() : viewLogin()}
+      </div>
+    </>
   );
 };
 

@@ -5,7 +5,7 @@
     justify-content: center;
     height: 100vh;
     text-align: center;
-    background-color: #f5f5f5;
+    background-color: var(--background-color);
 }
 
 .title {
@@ -22,15 +22,14 @@
 
 .homeLink {
     font-size: 18px;
-    color: #210110;
+    background-color: var(--primary-color);;
     text-decoration: none;
-    border: 2px solid #210110;
+    color: #feffd5;
     padding: 10px 20px;
     border-radius: 5px;
     transition: background-color 0.3s, color 0.3s;
 }
 
 .homeLink:hover {
-    background-color: #210110;
-    color: #feffd5;
+    color: #fff;
 }

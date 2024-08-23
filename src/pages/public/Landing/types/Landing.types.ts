@@ -11,3 +11,10 @@ export type TypeLevelDto = {
   description: string;
   levels: levelDto[];
 };
+
+export type TeacherDto = {
+  id: number;
+  name: string;
+  lastName: string;
+  imgUrl: string | null;
+};

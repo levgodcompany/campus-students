@@ -1,0 +1,25 @@
+.landingContainerTeachers {
+  margin: 20px 10px 0;
+  background-color: #262626;
+  padding: 0 0 35px;
+}
+
+.teacherTitle {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0;
+  margin-bottom: 10px;
+  padding: 25px 10px 5px;
+  text-align: center;
+  color: var(--color);
+}
+
+.teacherDescription {
+  font-size: 18px;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #bbb;
+  padding: 5px 20px;
+  max-width: 717px;
+  margin: auto;
+}
