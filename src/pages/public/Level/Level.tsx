@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import LevelService from "./service/Level.service";
 import { LevelDto } from "./types/Level.types";
 import style from "./Level.module.css";
 import Plans from "./components/Plans/Plans";
 import Header from "../../../components/Header/Header";
 import Teacher from "./components/Teacher/Teacher";
+import { PublicRoutes } from "../../../routes/routes";
 
 const Level = () => {
   const { idLevel } = useParams<{ idLevel: string }>();
   const [lev, setLev] = useState<LevelDto | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchLevel();
@@ -26,6 +28,12 @@ const Level = () => {
     } catch (error) {
       console.error("Error fetching level data:", error);
     }
+  };
+
+  const handleOnClikRedirect = (idCohort: number) => {
+    navigate(
+      `/${PublicRoutes.PUBLIC}/${PublicRoutes.PRE_REGISTRATION}/level/${idLevel}/${lev?.title}/cohort/${idCohort}`
+    );
   };
 
   return (
@@ -66,7 +74,10 @@ const Level = () => {
                     </div>
 
                     <div className={style.datesDate}>
-                      <button className={style.datesDateButton}>
+                      <button
+                        onClick={() => handleOnClikRedirect(cohort.id)}
+                        className={style.datesDateButton}
+                      >
                         Quiero empezar
                       </button>
                     </div>

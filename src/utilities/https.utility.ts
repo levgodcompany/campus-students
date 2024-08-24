@@ -1,11 +1,16 @@
+
 import { axiosInstance } from "../services/axiosConfig.service";
 
+
 export interface MetodhHttp<T, D> {
-    findAll<R = T[]>(): Promise<R>;
-    findOne<R = T, W = D>(id: W | null): Promise<R | null>;
-    create<Req = T, Res = T>(data: Req): Promise<Res>;
-    update<W = D, Req = T, Res = T>(id: W | null, data: Partial<Req>): Promise<Res>;
-    delete(id: D): Promise<void>;
+  findAll<R = T[]>(): Promise<R>;
+  findOne<R = T, W = D>(id: W | null): Promise<R | null>;
+  create<Req = T, Res = T>(data: Req): Promise<Res>;
+  update<W = D, Req = T, Res = T>(
+    id: W | null,
+    data: Partial<Req>
+  ): Promise<Res>;
+  delete(id: D): Promise<void>;
 }
 
 class Https {
@@ -27,9 +32,9 @@ class Https {
   /**
    * T result
    * D data
-   * @param url 
-   * @param data 
-   * @returns 
+   * @param url
+   * @param data
+   * @returns
    */
   async httpPost<T, D>(url: string, data: D): Promise<T> {
     try {
@@ -61,7 +66,7 @@ class Https {
   private handleError(error: any): never {
     // Manejo de errores centralizado
     // Puedes agregar más lógica de manejo de errores aquí
-    console.error('Unexpected error:', error);
+    console.error("Unexpected error:", error);
     throw error;
   }
 }
@@ -93,7 +98,10 @@ export class AppServices<T, D> extends Https implements MetodhHttp<T, D> {
     return this.httpPost<Res, Req>(this.url, data);
   }
 
-  async update<W = D, Req = T, Res = T>(id: W, data: Partial<Req>): Promise<Res> {
+  async update<W = D, Req = T, Res = T>(
+    id: W,
+    data: Partial<Req>
+  ): Promise<Res> {
     return this.httpUpdate<Res, Partial<Req>>(`${this.url}/${id}`, data);
   }
 
@@ -101,5 +109,24 @@ export class AppServices<T, D> extends Https implements MetodhHttp<T, D> {
     await this.httpDelete<void>(`${this.url}/${id}`);
   }
 }
+
+export type ApiResponse = {
+  status: "error";
+  statusCode: number;
+  message: string;
+};
+
+export const axiosError = (err: any): ApiResponse => {
+  if (err.response && err.response.data) {
+    const d: ApiResponse = err.response.data;
+    return d;
+  } else {
+    return {
+      message: "Ocurrió un error",
+      status: "error",
+      statusCode: 500,
+    };
+  }
+};;
 
 export default Https;

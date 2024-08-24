@@ -1,0 +1,88 @@
+.container {
+  padding: 20px;
+}
+
+.containerForm {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Ajustado para mayor separación */
+  border: 1px solid var(--linear);
+  border-radius: 3px;
+  padding: 20px;
+}
+
+.title {
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.tutorSectionTitle {
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.formAllGroup {
+  display: flex;
+  gap: 20px; /* Añadido para mayor separación entre los grupos */
+  flex-wrap: wrap; /* Para que se ajusten en pantallas pequeñas */
+}
+
+.formGroup {
+  flex: 1; /* Permite que los grupos ocupen el mismo espacio disponible */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.label {
+  font-size: 12px;
+  line-height: 16px;
+  color: #ffffff;
+}
+
+.input {
+  padding: 8px 16px;
+  border: 1px solid #2e2f36;
+  border-radius: 3px;
+  background-color: #2e2f36;
+  color: #fff;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 14px;
+  background-color: var(--background-button);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 16px;
+  opacity: 0.85;
+}
+
+.tutorSection {
+  padding-top: 20px;
+  border-top: 1px solid var(--linear);
+}
+
+.select {
+  padding: 10px 16px;
+  border: 1px solid #2e2f36;
+  border-radius: 3px;
+  background-color: #2e2f36;
+  color: #fff;
+  font-size: 14px;
+  line-height: 24px;
+}

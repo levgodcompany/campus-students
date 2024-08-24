@@ -1,4 +1,5 @@
 import { axiosInstance } from "../../../../services/axiosConfig.service";
+import { ApiResponse } from "../../../../utilities/https.utility";
 import { login } from "../types/login.types";
 
 type student = {
@@ -14,7 +15,7 @@ class LoginService {
       const res = await axiosInstance.post<response>(
         `auht/student/login`,
         data
-      );
+      )
       return res.data;
     } catch (error) {
       throw error;

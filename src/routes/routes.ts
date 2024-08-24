@@ -2,6 +2,7 @@ export const PublicRoutes = {
   PUBLIC: "in-house",
   LANDING: "landing",
   LEVEL: "level",
+  PRE_REGISTRATION: "pre-inscripcion",
   LOGIN: "singin",
   SINGUP: "singup",
   FORGOT_PASSWORD: "forgot-password",

@@ -64,13 +64,14 @@ button:focus-visible {
 
 /* Estilo general para la barra de desplazamiento */
 ::-webkit-scrollbar {
-  width: 10px; /* Ancho de la barra de desplazamiento */
+  width: 12px; /* Ancho de la barra de desplazamiento */
+ 
 }
 
 /* Estilo del track (la parte por donde se desplaza la barra) */
 ::-webkit-scrollbar-track {
   background: #3c3d3d; /* Color de fondo del track */
-  border-radius: 10px; /* Bordes redondeados */
+  /* border-radius: 10px;  */
 }
 
 /* Estilo del thumb (la parte que se arrastra) */
@@ -78,6 +79,7 @@ button:focus-visible {
   background-color: var(--background-color); /* Color de la barra de desplazamiento */
   border-radius: 10px; /* Bordes redondeados */
   border: 3px solid #3c3d3d; /* Borde alrededor del thumb */
+  
 }
 
 /* Estilo del thumb cuando se pasa el cursor por encima */

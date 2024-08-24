@@ -123,9 +123,6 @@ const Plans: React.FC<PlanProps> = ({ idLevel }) => {
               ))}
             </ul>
           </div>
-          <div className={style.planButtons}>
-            <button className={style.planButton}>Ver Plan</button>
-          </div>
         </div>
       ))}
     </div>

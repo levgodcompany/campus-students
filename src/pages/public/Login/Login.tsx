@@ -7,13 +7,14 @@ import LoginService from "./services/Login.service";
 import { loginSuccess, logout } from "../../../redux/slices/auth.slice";
 import { PrivateRoutes } from "../../../routes/routes";
 import Header from "../../../components/Header/Header";
+import { axiosError } from "../../../utilities/https.utility";
 
 const Login = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [formData, setFormData] = useState<login>({
-    email: "",
-    password: "",
+    email: "lea@gmail.com",
+    password: "43028675",
   });
   const [error, setError] = useState<string | null>(null);
   const [isForgotPassword, setIsForgotPassword] = useState<boolean>(false);
@@ -41,8 +42,8 @@ const Login = () => {
         navigate(`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.LEVELS}`);
 
       }
-    } catch (err) {
-      setError("Login failed. Please check your credentials.");
+    } catch (err: any) {      
+      setError(`${axiosError(err).message}`);
     }
   };
 
