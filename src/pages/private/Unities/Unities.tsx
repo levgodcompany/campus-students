@@ -1,21 +1,29 @@
 import { useEffect, useState } from "react";
 import UnitiesService from "./services/Unities.service";
 import style from "./Unities.module.css";
-import { Unit } from "./types/Unities.types";
+import { TeacherDto, Unit } from "./types/Unities.types";
 import MessageError from "../../../components/ConfirCancelReservation/MessageError";
 import { useNavigate, useParams } from "react-router-dom";
-import { PrivateRoutes } from "../../../routes/routes";
+import { PrivateRoutes, PublicRoutes } from "../../../routes/routes";
 import { useDispatch } from "react-redux";
 import {
   addPage,
+  clearNavigation,
   updatePage,
-  updatePageAll,
 } from "../../../redux/slices/Navigations.slice";
 import Navigation from "../../../components/Navigation/Navigation";
+import LevelsService from "../Levels/services/Levels.service";
+import { levelDto } from "../types/Levels.types";
+import Teacher from "./components/Teacher/Teacher";
+import { useAppSelector } from "../../../redux/hooks";
+import { axiosError } from "../../../utilities/https.utility";
 
 const Unities = () => {
   const [unities, setUnities] = useState<Unit[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [levelSelect, setLevelSelect] = useState<levelDto | null>(null);
+  const [teachers, setTeachers] = useState<TeacherDto[]>([]);
+  const studetState = useAppSelector((state) => state.student);
   const { idLevel, titleLevel } = useParams<{
     idLevel: string;
     titleLevel: string;
@@ -25,23 +33,91 @@ const Unities = () => {
 
   useEffect(() => {
     fetchUnities();
+    fetchLevel();
+    fetchTeachers();
+    dispatch(clearNavigation());
     dispatch(
-      updatePageAll({
-        page: {},
-        title: `Unidades`,
-        completTitle: "",
+      addPage({
+        title: `Nivel: ${levelSelect?.title}`, // Título de la página
+        description: "", // Descripción de la página
+        url: `/${PrivateRoutes.PRIVATE}/${PrivateRoutes.LEVELS}`,
+      })
+    );
+    dispatch(
+      addPage({
+        title: `Unidades`, // Título de la página
+        description: "", // Descripción de la página
+        url: `/${PrivateRoutes.PRIVATE}/${PrivateRoutes.UNITIES}/${idLevel}`,
       })
     );
   }, [idLevel]);
 
+  useEffect(() => {
+    dispatch(clearNavigation());
+    dispatch(
+      addPage({
+        title: `Nivel: ${levelSelect?.title}`, // Título de la página
+        description: "", // Descripción de la página
+        url: `/${PrivateRoutes.PRIVATE}/${PrivateRoutes.LEVELS}`,
+      })
+    );
+    dispatch(
+      addPage({
+        title: `Unidades`, // Título de la página
+        description: "", // Descripción de la página
+        url: `/${PrivateRoutes.PRIVATE}/${PrivateRoutes.UNITIES}/${idLevel}`,
+      })
+    );
+  }, [levelSelect]);
+
+  const fetchTeachers = async () => {
+    try {
+      const app = LevelsService.crud();
+      app.setUrl(`/teachers/${idLevel}`);
+      const res = await app.findAll<TeacherDto[]>();
+      setTeachers(res);
+    } catch (error) {
+      const e = axiosError(error);
+      if (e.statusCode == 403) {
+        navigate(`/${PublicRoutes.PUBLIC}/${PublicRoutes.LOGIN}`, {
+          replace: true,
+        });
+      }
+      setError("No se pudieron cargar las unidades.");
+    }
+  };
+
   const fetchUnities = async () => {
     try {
       const app = UnitiesService.crud();
-      app.setUrl(`/level/${idLevel}`);
+      app.setUrl(`/levels/${idLevel}/student/${studetState?.id}`);
+      // app.setUrl(`/level/${idLevel}`);
       const res = await app.findAll();
       setUnities(res);
     } catch (error) {
-      console.error("Error fetching units:", error);
+      const e = axiosError(error);
+      if (e.statusCode == 403) {
+        navigate(`/${PublicRoutes.PUBLIC}/${PublicRoutes.LOGIN}`, {
+          replace: true,
+        });
+      }
+      setError("No se pudieron cargar las unidades.");
+    }
+  };
+
+  const fetchLevel = async () => {
+    try {
+      const app = LevelsService.crud();
+      // app.setUrl(`/level/${idLevel}`);
+      const res = await app.findOne<levelDto, string>(`/${Number(idLevel)}`);
+      setLevelSelect(res);
+    } catch (error) {
+      const e = axiosError(error);
+      if (e.statusCode == 403) {
+        navigate(`/${PublicRoutes.PUBLIC}/${PublicRoutes.LOGIN}`, {
+          replace: true,
+        });
+      }
       setError("No se pudieron cargar las unidades.");
     }
   };
@@ -75,29 +151,39 @@ const Unities = () => {
         />
       )}
 
-      <h1 className={style.title}>Unidades del Nivel "{titleLevel}"</h1>
-      
-      <div className={style.cardContainer}>
-        {unities.length > 0 ? (
-          unities
-            .sort((a, b) => a.order - b.order)
-            .map((unit) => (
-              <div key={unit.id} className={style.card}>
-                <h2 className={style.cardTitle}>{unit.title}</h2>
-                <p className={style.cardDescription}>{unit.description}</p>
-                <div className={style.cardActions}>
-                  <button
-                    onClick={() => handleCardClick(unit)}
-                    className={style.cardButton}
-                  >
-                    Cursos
-                  </button>
+      <div className={style.containerTitle}>
+        <h1 className={style.title}>{levelSelect?.title}</h1>
+        <p className={style.titleDescription}>{levelSelect?.description}</p>
+        {/* <div>
+
+        </div> */}
+      </div>
+
+      {/* <h1 className={style.title}>Unidades del Nivel "{levelSelect?.title}"</h1> */}
+
+      <div className={style.containerInfo}>
+        <div className={style.cardContainer}>
+          {unities.length > 0 ? (
+            unities
+              .sort((a, b) => a.order - b.order)
+              .map((unit) => (
+                <div
+                  onClick={() => handleCardClick(unit)}
+                  key={unit.id}
+                  className={style.card}
+                >
+                  <h2 className={style.cardTitle}>{unit.title}</h2>
+                  <p className={style.cardDescription}>{unit.description}</p>
                 </div>
-              </div>
-            ))
-        ) : (
-          <p>No hay unidades disponibles</p>
-        )}
+              ))
+          ) : (
+            <p>No hay unidades disponibles</p>
+          )}
+        </div>
+
+        <div className={style.cardContainerTeacher}>
+          <Teacher teachers={teachers} />
+        </div>
       </div>
     </div>
   );

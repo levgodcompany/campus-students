@@ -8,13 +8,14 @@ import { loginSuccess, logout } from "../../../redux/slices/auth.slice";
 import { PrivateRoutes } from "../../../routes/routes";
 import Header from "../../../components/Header/Header";
 import { axiosError } from "../../../utilities/https.utility";
+import { loginStudentSuccess } from "../../../redux/slices/student.slice";
 
 const Login = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [formData, setFormData] = useState<login>({
-    email: "lea@gmail.com",
-    password: "43028675",
+    email: "lean@gmail.com",
+    password: "43028674",
   });
   const [error, setError] = useState<string | null>(null);
   const [isForgotPassword, setIsForgotPassword] = useState<boolean>(false);
@@ -39,7 +40,13 @@ const Login = () => {
       }else {
         const res = await LoginService.login(formData);
         dispatch(loginSuccess({ token: res.token }));
-        navigate(`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.LEVELS}`);
+        dispatch(loginStudentSuccess({
+          id: res.user.id,
+          fullName: res.user.fullName,
+          email: res.user.email,
+          idLevel: res.user.idLevel
+        }));
+        navigate(`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.UNITIES}/${res.user.idLevel}`);
 
       }
     } catch (err: any) {      

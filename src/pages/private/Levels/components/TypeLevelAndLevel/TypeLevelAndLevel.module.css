@@ -1,0 +1,131 @@
+.containertypeLevelCard{
+  background-color: var(--background-color);
+}
+
+
+.landingContainer {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  
+}
+
+.mainTitle {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0;
+  margin-bottom: 10px;
+  padding: 25px 10px;
+  text-align: center;
+  color: var(--color);
+}
+
+.mainDescription {
+  font-size: 18px;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #bbb;
+  /* max-width: 300px; */
+  padding: 5px 20px;
+  max-width: 586px;
+  margin: auto;
+}
+
+.typeLevelCard {
+  /* background-color: #9d9d9d; */
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.infoTypeLevel {
+  padding: 30px;
+  /* width: 100%; */
+  position: relative;
+  background-color: var(--background-button);
+  margin-bottom: 25px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.typeLevelTitle {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0px;
+  margin-bottom: 15px;
+}
+
+.typeLevelDescription {
+  font-size: 16px;
+  margin-bottom: 15px;
+  /* max-width: 320px; */
+  margin: auto;
+  padding: 0 20px;
+}
+
+.levelsContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.levelCard {
+  border-radius: 3px;
+  width: 250px;
+  padding: 1rem;
+  height: 225px;
+  border: 1px solid var(--linear);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+.containerLevelTitle {
+    border-bottom: 1px solid #5a5959;
+    padding: 5px;
+    text-align: center;
+}
+
+.levelTitle {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+  color: #fafafa;
+}
+
+.contaienerLevelDescription {
+  padding: 5px;
+  /* height: 170px; */
+  overflow: auto;
+  /* height: 170px; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  /* -webkit-line-clamp: 8; */
+  -webkit-box-orient: vertical;
+  word-break: break-word;
+}
+
+.levelDescription {
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: #bebebe;
+}
+
+
+@media (max-width: 768px) {
+  .mainTitle{
+    font-size: 25px;
+    padding: 25px 10px;
+    padding-bottom: 5px;
+  }
+
+  .mainDescription {
+    font-size: 14px;
+    padding: 0 10px;
+  }
+}

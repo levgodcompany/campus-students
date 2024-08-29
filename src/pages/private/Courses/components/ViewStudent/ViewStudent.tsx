@@ -4,6 +4,10 @@ import CourseList from "./CourseList/CourseList";
 import ViewVideo from "./ViewVideo/ViewVideo";
 import style from "./ViewStudent.module.css";
 import { CourseAndModules } from "../../../types/Courses.types";
+import { useAppSelector } from "../../../../../redux/hooks";
+import { axiosError } from "../../../../../utilities/https.utility";
+import { useNavigate } from "react-router-dom";
+import { PublicRoutes } from "../../../../../routes/routes";
 
 interface ViewStudentProps {
   idUnit: number;
@@ -13,6 +17,8 @@ const ViewStudent: React.FC<ViewStudentProps> = ({ idUnit }) => {
   const [coursesAndModules, setCoursesAndModules] = useState<
     CourseAndModules[]
   >([]);
+  const navigate = useNavigate();
+  const studetState = useAppSelector((state) => state.student);
   const [moduleSelect, setModuleSelet] = useState<{
     url: string;
     title: string;
@@ -30,12 +36,17 @@ const ViewStudent: React.FC<ViewStudentProps> = ({ idUnit }) => {
   const fechCoursesAndModules = async () => {
     try {
       const app = CoursesService.crud();
-      app.setUrl(`/${idUnit}/unities`);
+      app.setUrl(`/unit/${idUnit}/student/${studetState?.id}`);
       const res = await app.findAll<CourseAndModules[]>();
       res.sort((a, b) => a.order - b.order);
       setCoursesAndModules(res);
     } catch (error) {
-      console.error("Error fetching courses:", error);
+      const e = axiosError(error);
+      if (e.statusCode == 403) {
+        navigate(`/${PublicRoutes.PUBLIC}/${PublicRoutes.LOGIN}`, {
+          replace: true,
+        });
+      }
     }
   };
 

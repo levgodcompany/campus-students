@@ -12,3 +12,10 @@ export type UnitCreate = {
     order: number;
     idLevel: number;
 }
+
+
+export type TeacherDto = {
+    id: number;
+    fullName: string;
+    imgUrl: string;
+}

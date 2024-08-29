@@ -9,18 +9,23 @@ interface ViewVideoProps {
 
 const ViewVideo: React.FC<ViewVideoProps> = ({ url, title, description }) => {
   const [src, setSrc] = useState<string | null>(null);
+  const [cleanDescription, setCleanDescription] = useState<string>(description);
 
   useEffect(() => {
-    if(url.length > 0) {
+    if (url.length > 0) {
       const srcMatch = url.match(/src="([^"]*)"/);
       if (srcMatch && srcMatch[1]) {
         setSrc(srcMatch[1]);
       }
-
-    }else {
+    } else {
       setSrc(null);
     }
   }, [url]);
+
+  useEffect(() => {
+    const cleanedHtml = description.replace(/<p>\s*<br>\s*<\/p>/gi, "");
+    setCleanDescription(cleanedHtml);
+  }, [description]);
 
   return (
     <div className={style.container}>
@@ -36,11 +41,18 @@ const ViewVideo: React.FC<ViewVideoProps> = ({ url, title, description }) => {
             <p className={style.title}>{title}</p>
           </div>
           <div className={style.video_info}>
-          <div dangerouslySetInnerHTML={{ __html: description }} />
+            <div dangerouslySetInnerHTML={{ __html: cleanDescription }} />
           </div>
         </div>
       ) : (
-        <h1>No hay video</h1>
+        <div className={style.not_video_container}>
+          <div className={style.video_title}>
+            <p className={style.title}>{title}</p>
+          </div>
+          <div className={style.video_info}>
+            <div dangerouslySetInnerHTML={{ __html: cleanDescription }} />
+          </div>
+        </div>
       )}
     </div>
   );

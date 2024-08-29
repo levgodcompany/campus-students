@@ -1,20 +1,21 @@
 /* Navigation.module.css */
 
 .contianer_navegation {
-  /* Contenedor principal con margen y padding */
   padding: 10px;
   margin-bottom: 20px;
-  background-color: #ffffff; /* Fondo ligeramente gris */
-  border-radius: 5px; /* Esquinas redondeadas */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  background-color: var(--background-color);
+  /* border-radius: 5px; */
+  border-bottom: 1xps solid red;
+  box-shadow: 0px 1px 0px var(--linear);
 }
 
 .container_nav {
-  /* Flexbox para alinear los elementos */
   display: flex;
   align-items: center;
-  font-size: 14px; /* Tamaño de fuente pequeño */
+  font-size: 14px;
   gap: 5px;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .history {
@@ -36,6 +37,7 @@
   /* Eliminar subrayado en los títulos */
   text-decoration: none;
   margin: 0 5px; /* Espacio entre el separador y el título */
+  color: #fff;
 }
 
 .history > p {

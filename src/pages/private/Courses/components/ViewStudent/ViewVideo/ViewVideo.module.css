@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 350px;
+  padding-right: 20px;
 }
 
 /* Contenedor del video para mantener la relación de aspecto */
@@ -12,6 +12,11 @@
   width: 100%;
   max-width: 100%;
   padding-top: 56.25%; /* Relación de aspecto 16:9 */
+}
+
+.not_video_container {
+  position: relative;
+  width: 100%;
 }
 
 /* Estilo para el iframe */
@@ -33,18 +38,90 @@
 }
 
 .title {
-  font-size: 16px;
-  color: #333;
+  font-size: 24px;
+  color: #fff;
   padding: 0;
   margin: 0;
   font-weight: 700;
+  text-align: left;
+  display: inline-block;
+}
+
+/* Estilo para el elemento */
+.title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 6px;
+  background-color: var(--background-button);
+  position: absolute;
+}
+
+.title::after {
+  bottom: 0;
+  left: 0;
+  top: 100%;
 }
 
 .video_info {
-  margin-top: 35px;
   position: absolute;
-  width: 100%;
+  /* max-width: 96%; */
   padding: 0 15px;
   box-sizing: border-box;
   overflow: auto;
+  /* margin: auto; */
+  margin-top: 60px;
+  background-color: var(--background-button);
+}
+
+/* estilos de innerhtml */
+.video_info h1,
+.video_info h2,
+.video_info h3,
+.video_info a,
+.video_info strong {
+  color: #fff;
+}
+
+.video_info h1::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 4px;
+  background-color: var(--linear);
+  position: absolute;
+}
+
+.video_info blockquote {
+  margin-left: 0;
+}
+
+.video_info h1::after {
+  bottom: 0;
+  left: 0;
+}
+
+.video_info a {
+  text-decoration: underline;
+}
+
+.video_info p {
+  line-height: 1.6;
+  color: #fff;
+}
+
+.video_info img {
+  max-width: 250px; /* Ajusta la imagen al tamaño del contenedor */
+  height: auto;
+  display: block;
+  margin: 10px 0; /* Espaciado superior e inferior */
+  border-radius: 8px; /* Esquinas redondeadas opcionales */
+}
+
+.video_info p > img {
+  max-width: 250px; /* Ajusta la imagen al tamaño del contenedor */
+  height: auto;
+  display: block;
+  margin: 10px 0; /* Espaciado superior e inferior */
+  border-radius: 8px; /* Esquinas redondeadas opcionales */
 }

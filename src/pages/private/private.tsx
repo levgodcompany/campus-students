@@ -20,7 +20,7 @@ function Private() {
       <Route path={`${PrivateRoutes.LEVELS}`} element={<Levels />} />
       <Route path={`${PrivateRoutes.COHORTS}`} element={<Cohorts />} />
       <Route
-        path={`${PrivateRoutes.UNITIES}/:idLevel/:titleLevel/*`}
+        path={`${PrivateRoutes.UNITIES}/:idLevel/*`}
         element={<Unities />}
       />
       <Route

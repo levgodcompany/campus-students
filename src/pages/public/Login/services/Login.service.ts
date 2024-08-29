@@ -4,8 +4,8 @@ import { login } from "../types/login.types";
 
 type student = {
   id: number;
-  name: string;
-  lastName: string;
+  fullName: string;
+  idLevel: number;
   email: string;
 };
 type response = { user: student; token: string };

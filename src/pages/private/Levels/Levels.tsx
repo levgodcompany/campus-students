@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { levelDto } from "./types/Levels.types";
-import LevelsService from "./services/Levels.service";
 import MessageError from "../../../components/ConfirCancelReservation/MessageError";
 import style from "./Levels.module.css";
 import { useNavigate } from "react-router-dom";
@@ -12,18 +11,15 @@ import {
   clearNavigation,
   updatePage,
 } from "../../../redux/slices/Navigations.slice";
-import Exam from "./components/Exam/Exam";
-import Header from "../../../components/Header/Header";
+import TypeLevelAndLevel from "./components/TypeLevelAndLevel/TypeLevelAndLevel";
+// import Header from "../../../components/Header/Header";
 
 const Levels = () => {
-  const [levels, setLevels] = useState<levelDto[]>([]);
-  const [levelSelect, _setLevelSelect] = useState<levelDto | null>(null);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchLevels();
     dispatch(clearNavigation());
     dispatch(
       addPage({
@@ -33,15 +29,6 @@ const Levels = () => {
       })
     );
   }, []);
-
-  const fetchLevels = async () => {
-    try {
-      const result = await LevelsService.crud().findAll();
-      setLevels(result);
-    } catch (error) {
-      setError(`${error}`);
-    }
-  };
 
   const handleCardClick = (level: levelDto) => {
     const url = `/${PrivateRoutes.PRIVATE}/${PrivateRoutes.UNITIES}/${level.id}/${level.title}`;
@@ -63,12 +50,12 @@ const Levels = () => {
 
   return (
     <div className={style.container}>
-      <Header />
+      {/* <Header /> */}
       <div className={style.container_nav}>
         <Navigation />
       </div>
 
-      <h1 className={style.title}>Niveles</h1>
+      {/* <h1 className={style.title}>Niveles</h1> */}
 
       {error && (
         <MessageError
@@ -79,25 +66,8 @@ const Levels = () => {
       )}
 
       <div className={style.cardContainer}>
-        {levels.length > 0 ? (
-          levels
-            .sort((a, b) => a.order - b.order)
-            .map((level) => (
-              <div onClick={() => handleCardClick(level)} key={level.id} className={style.card}>
-                <h2 className={style.cardTitle}>{level.title}</h2>
-                <p className={style.cardDescription}>{level.description}</p>
-                <div className={style.cardActions}>
-                </div>
-              </div>
-            ))
-        ) : (
-          <p>No hay niveles disponibles</p>
-        )}
+        <TypeLevelAndLevel select={handleCardClick} />
       </div>
-
-      {levelSelect ? (
-        <Exam idLevel={levelSelect.id} />
-      ) : null}
     </div>
   );
 };

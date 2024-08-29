@@ -1,6 +1,4 @@
-
 import { axiosInstance } from "../services/axiosConfig.service";
-
 
 export interface MetodhHttp<T, D> {
   findAll<R = T[]>(): Promise<R>;
@@ -127,6 +125,6 @@ export const axiosError = (err: any): ApiResponse => {
       statusCode: 500,
     };
   }
-};;
+};
 
 export default Https;

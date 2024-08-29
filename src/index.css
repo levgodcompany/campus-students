@@ -89,7 +89,7 @@ button:focus-visible {
 
 /* Estilo del thumb cuando se activa (al hacer clic) */
 ::-webkit-scrollbar-thumb:active {
-  background-color: #210110; /* Color cuando está activado */
+  background-color: #000; /* Color de la barra de desplazamiento */
 }
 
 @media (prefers-color-scheme: light) {

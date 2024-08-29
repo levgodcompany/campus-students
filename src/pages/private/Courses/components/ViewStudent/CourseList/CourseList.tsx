@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./CourseList.module.css";
 import { CourseAndModules } from "../../../../types/Courses.types";
 import { Module } from "../../../../types/Modules.types";
@@ -14,7 +13,6 @@ type CourseListProps = {
 
 const CourseList: React.FC<CourseListProps> = ({ course, setModuleSelet }) => {
   const sortedModules = course.modules.sort((a, b) => a.order - b.order);
-
   const handleSelect = (module: Module) => {
     if (module.typeFile && module.fileURL) {
       switch (module.typeFile) {
@@ -43,12 +41,27 @@ const CourseList: React.FC<CourseListProps> = ({ course, setModuleSelet }) => {
           console.log("Handling link");
           // Aquí podrías establecer un estado o realizar otra acción específica para enlaces
           break;
+        case "":
+          // Lógica para manejar archivos de video
+          setModuleSelet({
+            title: module.title,
+            url: "",
+            description: module.description,
+          });
+          // Aquí podrías establecer un estado o realizar otra acción específica para videos
+          break;
 
         default:
           console.log("Unknown file type");
           // Manejo para tipos de archivo desconocidos
           break;
       }
+    }else {
+      setModuleSelet({
+        title: module.title,
+        url: "",
+        description: module.description,
+      });
     }
   };
 
