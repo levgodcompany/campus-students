@@ -38,40 +38,44 @@ const TypeLevelAndLevel = () => {
           Impulsa tu Éxito con Formación de Alta Calidad
         </h1>
         <p className={styles.mainDescription}>
-        Cursos diseñados para todas las edades y niveles, impartidos por expertos en la enseñanza del inglés
+          Cursos diseñados para todas las edades y niveles, impartidos por
+          expertos en la enseñanza del inglés
         </p>
-
       </div>
-      {typeLevelAndLevel.map((typeLevel) => (
-        <div key={typeLevel.id} className={styles.typeLevelCard}>
-          <h2 className={styles.typeLevelTitle}>{typeLevel.title}</h2>
-          <p className={styles.typeLevelDescription}>{typeLevel.description}</p>
-          <div className={styles.levelsContainer}>
-            {typeLevel.levels
-              .sort((a, b) => a.order - b.order)
-              .map((level) => (
-                <div key={level.id} className={styles.levelCard}>
-                  <div className={styles.containerLevelTitle}>
-                    <span className={styles.levelTitle}>{level.title}</span>
+      {typeLevelAndLevel
+        .sort((a, b) => a.order - b.order)
+        .map((typeLevel) => (
+          <div key={typeLevel.id} className={styles.typeLevelCard}>
+            <h2 className={styles.typeLevelTitle}>{typeLevel.title}</h2>
+            <p className={styles.typeLevelDescription}>
+              {typeLevel.description}
+            </p>
+            <div className={styles.levelsContainer}>
+              {typeLevel.levels
+                .sort((a, b) => a.order - b.order)
+                .map((level) => (
+                  <div key={level.id} className={styles.levelCard}>
+                    <div className={styles.containerLevelTitle}>
+                      <span className={styles.levelTitle}>{level.title}</span>
+                    </div>
+                    <div className={styles.contaienerLevelDescription}>
+                      <p className={styles.levelDescription}>
+                        {level.description}
+                      </p>
+                    </div>
+                    <div className={styles.contaienerButtons}>
+                      <button
+                        onClick={() => onClickLevel(level.id)}
+                        className={styles.button}
+                      >
+                        Más información
+                      </button>
+                    </div>
                   </div>
-                  <div className={styles.contaienerLevelDescription}>
-                    <p className={styles.levelDescription}>
-                      {level.description}
-                    </p>
-                  </div>
-                  <div className={styles.contaienerButtons}>
-                    <button
-                      onClick={() => onClickLevel(level.id)}
-                      className={styles.button}
-                    >
-                      Más información
-                    </button>
-                  </div>
-                </div>
-              ))}
+                ))}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
     </div>
   );
 };

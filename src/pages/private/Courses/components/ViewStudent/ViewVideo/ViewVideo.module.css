@@ -53,7 +53,7 @@
   display: block;
   width: 60px;
   height: 6px;
-  background-color: var(--background-button);
+  background-color: var(--color-orange);
   position: absolute;
 }
 
@@ -73,6 +73,23 @@
   margin-top: 60px;
   background-color: var(--background-button);
 }
+
+.containerButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding-bottom: 20px;
+}
+
+.buttonComplet {
+  border-radius: 0;
+  color: var(--color);
+  /* background-color: var(--color-orange); */
+  background-image: linear-gradient(to right, var(--color-orange), var(--color-violet));
+  border-style: none;
+}
+
+
 
 /* estilos de innerhtml */
 .video_info h1,

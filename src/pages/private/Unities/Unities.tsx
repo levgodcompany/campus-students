@@ -17,6 +17,8 @@ import { levelDto } from "../types/Levels.types";
 import Teacher from "./components/Teacher/Teacher";
 import { useAppSelector } from "../../../redux/hooks";
 import { axiosError } from "../../../utilities/https.utility";
+import imgUnit from "../../../assets/deployment-unit-svgrepo-com.svg"
+import HeaderCampus from "../../../components/HeaderCampus/HeaderCampus";
 
 const Unities = () => {
   const [unities, setUnities] = useState<Unit[]>([]);
@@ -141,6 +143,8 @@ const Unities = () => {
   };
 
   return (
+    <>
+    <HeaderCampus />
     <div className={style.container}>
       <Navigation />
       {error && (
@@ -172,8 +176,11 @@ const Unities = () => {
                   key={unit.id}
                   className={style.card}
                 >
-                  <h2 className={style.cardTitle}>{unit.title}</h2>
-                  <p className={style.cardDescription}>{unit.description}</p>
+                  <div className={style.cardInternal}>
+                    <img src={imgUnit} alt="" />
+                    <h2 className={style.cardTitle}>{unit.title}</h2>
+
+                  </div>
                 </div>
               ))
           ) : (
@@ -186,6 +193,7 @@ const Unities = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

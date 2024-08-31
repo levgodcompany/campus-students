@@ -3,7 +3,6 @@
 }
 
 .containerTitle {
-
 }
 
 .title {
@@ -19,10 +18,10 @@
 }
 
 .containerInfo {
-  display: grid;
+  /* display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  gap: 8px;
+  gap: 8px; */
 }
 
 .cardContainerTeacher {
@@ -36,29 +35,44 @@
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: row;
   align-content: center;
   grid-row: span 5 / span 5;
+  align-items: center;
+  max-width: 800px;
+  margin: auto;
 }
 
 .card {
-  /* background-color: #ffffff; */
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: 3px;
+  padding: 5px;
+  width: 300px;
+  height: 87px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  background-image: linear-gradient(to bottom, #d97706, #8E169B);
+  overflow: auto;
+}
+
+.cardInternal {
+  padding: 10px;
+  border-radius: 3px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  width: 300px;
   transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  background-color: #11111177 !important;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px rgb(97 96 96 / 20%);
 }
 
 .cardTitle {
-  font-size: 18px;
-  margin-bottom: 10px;
+  font-size: 15px;
+  font-weight: 400;
 }
 
 .cardDescription {

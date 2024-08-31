@@ -19,9 +19,11 @@
   --color-description: #817f80;
   --color-title: #303030;
   --background-color: #1a1a1a;
-  --color: #fff;
+  --color: #f1f1f1;
   --linear: #393b43;
   --background-button: #262626;
+  --color-orange: #d97706;
+  --color-violet: #8e169b;
 }
 
 a {
@@ -64,27 +66,27 @@ button:focus-visible {
 
 /* Estilo general para la barra de desplazamiento */
 ::-webkit-scrollbar {
-  width: 12px; /* Ancho de la barra de desplazamiento */
+  width: 5px; /* Ancho de la barra de desplazamiento */
  
 }
 
 /* Estilo del track (la parte por donde se desplaza la barra) */
 ::-webkit-scrollbar-track {
-  background: #3c3d3d; /* Color de fondo del track */
+  background: rgba(255, 0, 0, 0); /* Color de fondo del track */
   /* border-radius: 10px;  */
 }
 
 /* Estilo del thumb (la parte que se arrastra) */
 ::-webkit-scrollbar-thumb {
-  background-color: var(--background-color); /* Color de la barra de desplazamiento */
-  border-radius: 10px; /* Bordes redondeados */
-  border: 3px solid #3c3d3d; /* Borde alrededor del thumb */
+  background-color: #000; /* Color de la barra de desplazamiento */
+  /* border-radius: 10px; Bordes redondeados */
+  border: 3px solid rgba(255, 0, 0, 0); /* Borde alrededor del thumb */
   
 }
 
 /* Estilo del thumb cuando se pasa el cursor por encima */
 ::-webkit-scrollbar-thumb:hover {
-  background-color: var(--background-color); /* Color cuando se pasa el cursor por encima */
+  background-color: #000; /* Color cuando se pasa el cursor por encima */
 }
 
 /* Estilo del thumb cuando se activa (al hacer clic) */

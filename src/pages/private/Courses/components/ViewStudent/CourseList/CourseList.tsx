@@ -1,24 +1,56 @@
 import styles from "./CourseList.module.css";
 import { CourseAndModules } from "../../../../types/Courses.types";
 import { Module } from "../../../../types/Modules.types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDiceD6 } from "@fortawesome/free-solid-svg-icons/faDiceD6";
+import { faDiceD20 } from "@fortawesome/free-solid-svg-icons/faDiceD20";
+import { faCircleNodes } from "@fortawesome/free-solid-svg-icons/faCircleNodes";
+import { StudentAndModule } from "../types/student.type";
+import { useEffect, useState } from "react";
 
 type CourseListProps = {
   course: CourseAndModules;
+  studentAndModule: StudentAndModule[];
   setModuleSelet: (moduleSelect: {
+    id: number;
     url: string;
     title: string;
     description: string;
+    idCourse: number;
   }) => void;
 };
 
-const CourseList: React.FC<CourseListProps> = ({ course, setModuleSelet }) => {
+const CourseList: React.FC<CourseListProps> = ({
+  studentAndModule,
+  course,
+  setModuleSelet,
+}) => {
   const sortedModules = course.modules.sort((a, b) => a.order - b.order);
-  const handleSelect = (module: Module) => {
+  const [isCompletCourse, setIsCompletCourse] = useState<boolean>(false)
+  
+  useEffect(()=> {
+    let total = 0;
+    course.modules.map(module => {
+      const isBool = studentAndModule.find((s) => s.moduleId == module.id);
+      if(isBool) {
+        total++;
+      }
+    });
+
+    if(total == course.modules.length) {
+      setIsCompletCourse(true);
+    }
+
+  }, [course])
+
+  const handleSelect = (module: Module, idCourse: number) => {
     if (module.typeFile && module.fileURL) {
       switch (module.typeFile) {
         case "pdf":
           // Lógica para manejar archivos PDF
           setModuleSelet({
+            idCourse: idCourse,
+            id: module.id,
             title: module.title,
             url: "",
             description: module.description,
@@ -29,6 +61,8 @@ const CourseList: React.FC<CourseListProps> = ({ course, setModuleSelet }) => {
         case "video":
           // Lógica para manejar archivos de video
           setModuleSelet({
+            idCourse: idCourse,
+            id: module.id,
             title: module.title,
             url: module.fileURL ? module.fileURL : "",
             description: module.description,
@@ -44,6 +78,8 @@ const CourseList: React.FC<CourseListProps> = ({ course, setModuleSelet }) => {
         case "":
           // Lógica para manejar archivos de video
           setModuleSelet({
+            idCourse: idCourse,
+            id: module.id,
             title: module.title,
             url: "",
             description: module.description,
@@ -56,8 +92,10 @@ const CourseList: React.FC<CourseListProps> = ({ course, setModuleSelet }) => {
           // Manejo para tipos de archivo desconocidos
           break;
       }
-    }else {
+    } else {
       setModuleSelet({
+        idCourse: idCourse,
+        id: module.id,
         title: module.title,
         url: "",
         description: module.description,
@@ -65,26 +103,37 @@ const CourseList: React.FC<CourseListProps> = ({ course, setModuleSelet }) => {
     }
   };
 
+  const isComplet = (module: Module, idCourse: number) => {
+    const isBool = studentAndModule.find((s) => s.moduleId == module.id);
+
+    return (
+      <li
+        onClick={() => handleSelect(module, idCourse)}
+        key={module.id}
+        className={isBool ? `${styles.moduleItem} ${styles.moduleItemComplet}` : styles.moduleItem}
+      >
+        <div className={styles.moduleInfo}>
+          <span className={styles.icon}>
+            <FontAwesomeIcon icon={module.fileURL ? faDiceD6 : faCircleNodes} />
+          </span>
+          <p className={styles.title}>{module.title}</p>
+        </div>
+      </li>
+    );
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.container_title}>
-        <span className={styles.courseTitle}>{course.title}</span>
+        <span className={styles.icon}>
+          <FontAwesomeIcon icon={faDiceD20} />
+        </span>
+        <span className={isCompletCourse ? `${styles.courseTitle} ${styles.containerCompletCourse}` : styles.courseTitle}>{course.title}</span>
       </div>
       <ul className={styles.moduleList}>
         {sortedModules
           .sort((a, b) => a.order - b.order)
-          .map((module) => (
-            <li
-              onClick={() => handleSelect(module)}
-              key={module.id}
-              className={styles.moduleItem}
-            >
-              <div className={styles.moduleInfo}>
-                <p className={styles.title}>{module.title}</p>
-                {/* <span className={styles.typeFile}>Type: {module.typeFile}</span> */}
-              </div>
-            </li>
-          ))}
+          .map((module) => isComplet(module, module.idCourse))}
       </ul>
     </div>
   );

@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import Navigation from "../../../components/Navigation/Navigation";
 import { useDispatch } from "react-redux";
 import { updatePageAll } from "../../../redux/slices/Navigations.slice";
+import HeaderCampus from "../../../components/HeaderCampus/HeaderCampus";
 
 const Courses = () => {
   const [error, setError] = useState<string | null>(null);
@@ -17,7 +18,6 @@ const Courses = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(idUnit);
     dispatch(
       updatePageAll({
         page: {},
@@ -29,6 +29,8 @@ const Courses = () => {
   }, []);
 
   return (
+    <>
+    <HeaderCampus />
     <div className={style.container}>
       <Navigation />
       {error && (
@@ -42,6 +44,7 @@ const Courses = () => {
         <ViewStudent idUnit={Number(idUnit)} />
       </div>
     </div>
+    </>
   );
 };
 

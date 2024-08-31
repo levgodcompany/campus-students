@@ -12,6 +12,8 @@ import {
   updatePage,
 } from "../../../redux/slices/Navigations.slice";
 import TypeLevelAndLevel from "./components/TypeLevelAndLevel/TypeLevelAndLevel";
+import Header from "../../../components/Header/Header";
+import HeaderCampus from "../../../components/HeaderCampus/HeaderCampus";
 // import Header from "../../../components/Header/Header";
 
 const Levels = () => {
@@ -49,8 +51,9 @@ const Levels = () => {
   };
 
   return (
+    <>
+    <HeaderCampus />
     <div className={style.container}>
-      {/* <Header /> */}
       <div className={style.container_nav}>
         <Navigation />
       </div>
@@ -69,6 +72,7 @@ const Levels = () => {
         <TypeLevelAndLevel select={handleCardClick} />
       </div>
     </div>
+    </>
   );
 };
 

@@ -8,6 +8,8 @@ import { useAppSelector } from "../../../../../redux/hooks";
 import { axiosError } from "../../../../../utilities/https.utility";
 import { useNavigate } from "react-router-dom";
 import { PublicRoutes } from "../../../../../routes/routes";
+import ModuleService from "../../services/Module.service";
+import { StudentAndModule } from "./types/student.type";
 
 interface ViewStudentProps {
   idUnit: number;
@@ -17,21 +19,34 @@ const ViewStudent: React.FC<ViewStudentProps> = ({ idUnit }) => {
   const [coursesAndModules, setCoursesAndModules] = useState<
     CourseAndModules[]
   >([]);
+  const [studetnAndModule, setStudentAndModule] = useState<StudentAndModule[]>(
+    []
+  );
+  const [isFechComplet, setIsFechComplet] = useState<boolean>(false);
   const navigate = useNavigate();
   const studetState = useAppSelector((state) => state.student);
   const [moduleSelect, setModuleSelet] = useState<{
+    id: number;
     url: string;
     title: string;
     description: string;
+    idCourse: number;
   }>({
+    id: 0,
     title: "",
     url: "",
     description: "",
+    idCourse: 0,
   });
 
   useEffect(() => {
     fechCoursesAndModules();
+    fechStudentToModules();
   }, []);
+
+  useEffect(() => {
+    loader();
+  }, [isFechComplet]);
 
   const fechCoursesAndModules = async () => {
     try {
@@ -50,19 +65,59 @@ const ViewStudent: React.FC<ViewStudentProps> = ({ idUnit }) => {
     }
   };
 
+  const fechStudentToModules = async () => {
+    try {
+      const app = ModuleService.crud();
+      app.setUrl(`/assig/student/${studetState?.id}`);
+      const res = await app.findAll<StudentAndModule[]>();
+      setStudentAndModule(res);
+    } catch (error) {
+      const e = axiosError(error);
+      if (e.statusCode == 403) {
+        navigate(`/${PublicRoutes.PUBLIC}/${PublicRoutes.LOGIN}`, {
+          replace: true,
+        });
+      }
+    }
+  };
+
+  const loader = async () => {
+    if (isFechComplet) {
+      fechCoursesAndModules();
+      fechStudentToModules();
+    }
+    setIsFechComplet(false);
+    setModuleSelet({
+      id: 0,
+      title: "",
+      url: "",
+      description: "",
+      idCourse: 0,
+    });
+  };
+
   return (
     <div className={style.container}>
       <div className={style.container_video}>
         <ViewVideo
+          id={moduleSelect.id}
           title={moduleSelect.title}
           url={moduleSelect.url}
           description={moduleSelect.description}
+          studentAndModule={studetnAndModule}
+          idCourse={moduleSelect.idCourse}
+          load={setIsFechComplet}
         />
       </div>
       <div className={style.list_video}>
         {coursesAndModules.length ? (
           coursesAndModules.map((c) => (
-            <CourseList key={c.id} setModuleSelet={setModuleSelet} course={c} />
+            <CourseList
+              key={c.id}
+              studentAndModule={studetnAndModule}
+              setModuleSelet={setModuleSelet}
+              course={c}
+            />
           ))
         ) : (
           <p>No hay cursos disponibles</p>
