@@ -6,6 +6,7 @@ import { TeacherDto } from "./types/Landing.types";
 import LandingService from "./services/Landing.service";
 import Teacher from "./components/Teacher/Teacher";
 import Questions from "../../../components/Questions/Questions";
+import AACIInfo from "./components/AACIInfo/AACIInfo";
 
 const Landing = () => {
   const [teachers, setTeachers] = useState<TeacherDto[]>([]);
@@ -40,6 +41,9 @@ const Landing = () => {
           utilizando métodos probados y personalizados.
         </p>
         <Teacher teachers={teachers} />
+      </div>
+      <div className={styles.landingContainerAaci}>
+        <AACIInfo />
       </div>
       <Questions />
     </>

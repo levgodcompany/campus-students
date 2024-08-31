@@ -46,10 +46,14 @@ const TypeLevelAndLevel = () => {
         .sort((a, b) => a.order - b.order)
         .map((typeLevel) => (
           <div key={typeLevel.id} className={styles.typeLevelCard}>
-            <h2 className={styles.typeLevelTitle}>{typeLevel.title}</h2>
-            <p className={styles.typeLevelDescription}>
-              {typeLevel.description}
-            </p>
+            <div className={styles.typeLevelInfo}>
+            {/* <img src="https://uiparadox.co.uk/public/templates/gamerx/v2/assets/media/logos/tl-2.png" alt="" /> */}
+              <h2 className={styles.typeLevelTitle}> {typeLevel.title}</h2>
+              <p className={styles.typeLevelDescription}>
+                {typeLevel.description}
+              </p>
+
+            </div>
             <div className={styles.levelsContainer}>
               {typeLevel.levels
                 .sort((a, b) => a.order - b.order)

@@ -23,3 +23,19 @@
   max-width: 717px;
   margin: auto;
 }
+
+.landingContainerAaci {
+  margin: 20px 10px 0;
+}
+
+.aaciTitle {
+  font-weight: bold;
+  font-size: 35px;
+  /* letter-spacing: 0.00rem; */
+  text-transform: none;
+  line-height: 1.25;
+}
+
+.aaciSpan {
+  color: var(--color-orange);
+}

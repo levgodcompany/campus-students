@@ -1,9 +1,8 @@
-.containertypeLevelCard{
+.containertypeLevelCard {
   background-color: var(--background-color);
 }
 
 .containertypeLevel {
-  
 }
 
 .landingContainer {
@@ -11,7 +10,6 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  
 }
 
 .mainTitle {
@@ -36,20 +34,49 @@
 }
 
 .typeLevelCard {
-  /* background-color: #9d9d9d; */
   padding: 15px;
   border-radius: 8px;
+}
+
+.typeLevelInfo {
+  background-color: #0000006e;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  margin-bottom: 50px;
 }
 
 .typeLevelTitle {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;
+  position: relative;
+}
+
+/* Estilo para el elemento */
+.typeLevelTitle::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 6px;
+  background-color: var(--color-orange);
+  position: absolute;
+}
+
+.typeLevelTitle::after {
+  bottom: 0;
+  left: 0;
+  top: 100%;
 }
 
 .typeLevelDescription {
   font-size: 16px;
   margin-bottom: 15px;
+  max-width: 450px;
+  text-align: center;
+  /* padding: 5px 9rem; */
 }
 
 .levelsContainer {
@@ -61,21 +88,23 @@
 }
 
 .levelCard {
-  border-radius: 3px;
   width: 250px;
-  padding: 1rem;
-  height: 280px;
-  border: 1px solid var(--linear);
+  padding: 20px 15px 10px 8px;
+  /* height: 280px; */
+  /* border: 1px solid var(--linear); */
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-content: space-between;
+  background: url(/src/assets/kf-bg.png) no-repeat;
+  position: relative;
+  background-position: top right;
+  background-size: cover;
 }
 
 .containerLevelTitle {
-    border-bottom: 1px solid #5a5959;
-    padding: 5px;
-    text-align: center;
+  border-bottom: 1px solid #5a5959;
+  padding: 5px;
 }
 
 .levelTitle {
@@ -83,6 +112,11 @@
   font-weight: bold;
   margin: 0;
   color: #fafafa;
+  font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+  /* font-size: 27px; */
+  line-height: 120%;
+  letter-spacing: -0.27px;
 }
 
 .contaienerLevelDescription {
@@ -90,7 +124,7 @@
   height: 170px;
   overflow: auto;
   height: 170px;
-  text-align: justify;
+  /* text-align: justify; */
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -104,20 +138,27 @@
   font-size: 0.875rem;
   line-height: 1.25rem;
   color: #bebebe;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .contaienerButtons {
-
+  display: flex;
+  flex-direction: column;
 }
 
 .button {
   width: 100%;
   background-color: var(--background-button);
   color: #fff;
+  border-radius: 3px;
 }
 
 @media (max-width: 768px) {
-  .mainTitle{
+  .mainTitle {
     font-size: 25px;
     padding: 25px 10px;
     padding-bottom: 5px;

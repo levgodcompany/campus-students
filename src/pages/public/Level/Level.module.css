@@ -19,6 +19,23 @@
   line-height: 2.75rem;
   margin: 0 0 .5rem;
   color: #fff;
+  position: relative;
+}
+
+/* Estilo para el elemento */
+.levelTitle::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 6px;
+  background-color: var(--color-orange);
+  position: absolute;
+}
+
+.levelTitle::after {
+  bottom: 0;
+  left: 0;
+  top: 100%;
 }
 
 .teacherTitle {
