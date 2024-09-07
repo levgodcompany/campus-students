@@ -7,6 +7,7 @@ import LandingService from "./services/Landing.service";
 import Teacher from "./components/Teacher/Teacher";
 import Questions from "../../../components/Questions/Questions";
 import AACIInfo from "./components/AACIInfo/AACIInfo";
+import imgHeaderTeacher from "../../../assets/img1.svg";
 
 const Landing = () => {
   const [teachers, setTeachers] = useState<TeacherDto[]>([]);
@@ -27,24 +28,41 @@ const Landing = () => {
   return (
     <>
       <Header />
+      <div className={styles.landingHeader}>
+        <div className={styles.landingHeaderInfo}>
+          <h1 className={styles.landingHeaderInfo_title}>
+            Transforma tu futuro, estudia online con nosotros
+          </h1>
+          <p className={styles.landingHeaderInfo_subtitle}>
+            Un espacio para aprender, crecer y alcanzar tus metas desde
+            cualquier lugar
+          </p>
+        </div>
+        <div className={styles.landingHeaderInfoContainerImg}>
+          <img
+            className={styles.landingHeaderInfo_img}
+            src={imgHeaderTeacher}
+            alt=""
+          />
+        </div>
+      </div>
       <div className={styles.landingContainer}>
         <TypeLevelAndLevel />
       </div>
       <div className={styles.landingContainerTeachers}>
-        <h2 className={styles.teacherTitle}>
-          Instructores de Inglés de Clase Mundial
-        </h2>
+        <h2 className={styles.teacherTitle}>Referentes</h2>
         <p className={styles.teacherDescription}>
-          Aprende de profesionales altamente calificados con años de experiencia
-          enseñando inglés a estudiantes de todo el mundo. Nuestros instructores
-          están comprometidos a llevar tu dominio del idioma al siguiente nivel,
-          utilizando métodos probados y personalizados.
+          Aprende con instructores altamente capacitados y con amplia
+          experiencia en la enseñanza del inglés a estudiantes de diversas
+          culturas. Nuestros profesores están dedicados a ayudarte a alcanzar un
+          dominio avanzado del idioma, utilizando métodos efectivos y adaptados
+          a tus necesidades
         </p>
         <Teacher teachers={teachers} />
       </div>
-      <div className={styles.landingContainerAaci}>
+      {/* <div className={styles.landingContainerAaci}>
         <AACIInfo />
-      </div>
+      </div> */}
       <Questions />
     </>
   );

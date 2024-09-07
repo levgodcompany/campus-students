@@ -20,8 +20,8 @@ const Teacher: React.FC<TeacherProps> = ({ teachers }) => {
             />
           </div>
           <div className={style.teacherInfo}>
-            <p className={style.teacherName}>{teacher.name}</p>
-            <p className={style.teacherLastName}>{teacher.lastName}</p>
+            <p className={style.teacherName}>{teacher.name} {teacher.lastName}</p>
+            <p className={style.teacherLastName}>Profesor</p>
           </div>
         </div>
       ))}

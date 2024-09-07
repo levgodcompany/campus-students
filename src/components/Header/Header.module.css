@@ -3,8 +3,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
-  background-color: #000;
+  padding: 15px 65px;
+  background-color: var(--color-grey);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -36,6 +36,24 @@
 .actionsDesktop span {
   margin-left: 1rem;
   cursor: pointer;
+}
+
+.actionsDesktopContact {
+  padding: 5px 15px 6px;
+  border-radius: 10px;
+  border: 3px solid var(--color-orange);
+  display: inline-block;
+  width: 76px;
+  text-align: center;
+}
+
+.actionsDesktopCampus {
+  background-color: var(--color-orange);
+  padding: 8px 15px;
+  border-radius: 10px;
+  display: inline-block;
+  width: 76px;
+  text-align: center;
 }
 
 /* Estilos para el Header de Móviles */

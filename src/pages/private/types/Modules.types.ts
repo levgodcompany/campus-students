@@ -6,6 +6,7 @@ export type Module = {
   order: number;
   fileURL: string | null;
   typeFile: string | null;
+  enabled: boolean;
 };
 
 export type ModuleCreate = Omit<Module, "id">;

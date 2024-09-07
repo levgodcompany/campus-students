@@ -13,9 +13,10 @@ import { StudentAndModule } from "./types/student.type";
 
 interface ViewStudentProps {
   idUnit: number;
+  idCohort: number
 }
 
-const ViewStudent: React.FC<ViewStudentProps> = ({ idUnit }) => {
+const ViewStudent: React.FC<ViewStudentProps> = ({ idUnit, idCohort }) => {
   const [coursesAndModules, setCoursesAndModules] = useState<
     CourseAndModules[]
   >([]);
@@ -51,7 +52,7 @@ const ViewStudent: React.FC<ViewStudentProps> = ({ idUnit }) => {
   const fechCoursesAndModules = async () => {
     try {
       const app = CoursesService.crud();
-      app.setUrl(`/unit/${idUnit}/student/${studetState?.id}`);
+      app.setUrl(`/unit/${idUnit}/cohort/${idCohort}/student/${studetState?.id}`);
       const res = await app.findAll<CourseAndModules[]>();
       res.sort((a, b) => a.order - b.order);
       setCoursesAndModules(res);

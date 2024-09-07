@@ -1,15 +1,5 @@
 .containertypeLevelCard {
-  background-color: var(--background-color);
-}
-
-.containertypeLevel {
-}
-
-.landingContainer {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  padding-bottom: 80px;
 }
 
 .mainTitle {
@@ -27,56 +17,9 @@
   margin-bottom: 30px;
   text-align: center;
   color: #bbb;
-  /* max-width: 300px; */
   padding: 5px 20px;
   max-width: 586px;
   margin: auto;
-}
-
-.typeLevelCard {
-  padding: 15px;
-  border-radius: 8px;
-}
-
-.typeLevelInfo {
-  background-color: #0000006e;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  align-items: center;
-  margin-bottom: 50px;
-}
-
-.typeLevelTitle {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  position: relative;
-}
-
-/* Estilo para el elemento */
-.typeLevelTitle::after {
-  content: "";
-  display: block;
-  width: 60px;
-  height: 6px;
-  background-color: var(--color-orange);
-  position: absolute;
-}
-
-.typeLevelTitle::after {
-  bottom: 0;
-  left: 0;
-  top: 100%;
-}
-
-.typeLevelDescription {
-  font-size: 16px;
-  margin-bottom: 15px;
-  max-width: 450px;
-  text-align: center;
-  /* padding: 5px 9rem; */
 }
 
 .levelsContainer {
@@ -85,26 +28,30 @@
   gap: 25px;
   flex-wrap: wrap;
   justify-content: center;
+  padding: 35px 0;
 }
 
 .levelCard {
   width: 250px;
-  padding: 20px 15px 10px 8px;
-  /* height: 280px; */
-  /* border: 1px solid var(--linear); */
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-content: space-between;
-  background: url(/src/assets/kf-bg.png) no-repeat;
-  position: relative;
-  background-position: top right;
-  background-size: cover;
+  background-color: var(--color-grey);
+  border-radius: 10px;
+  padding: 13px 13px;
+}
+
+.levelCardCont {
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid var(--color-orange);
 }
 
 .containerLevelTitle {
-  border-bottom: 1px solid #5a5959;
-  padding: 5px;
+  padding: 8px;
+  text-align: center;
+  padding-bottom: 0;
 }
 
 .levelTitle {
@@ -114,23 +61,20 @@
   color: #fafafa;
   font-family: "Orbitron", sans-serif;
   font-weight: 700;
-  /* font-size: 27px; */
   line-height: 120%;
   letter-spacing: -0.27px;
 }
 
 .contaienerLevelDescription {
-  padding: 5px;
-  height: 170px;
-  overflow: auto;
-  height: 170px;
-  /* text-align: justify; */
+  padding: 0 5px;
   overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 8;
-  -webkit-box-orient: vertical;
-  word-break: break-word;
+  height: 113px;
+}
+
+.tipeLevesTitle {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 45px;
 }
 
 .levelDescription {
@@ -141,20 +85,35 @@
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 7;
-  line-clamp: 3;
   -webkit-box-orient: vertical;
 }
 
-.contaienerButtons {
+.contTypeLevel {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
-.button {
-  width: 100%;
-  background-color: var(--background-button);
-  color: #fff;
-  border-radius: 3px;
+.typeLevel {
+  padding: 9px 13px;
+  background-color: var(--color-grey);
+  width: 180px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.typeLevel_Info {
+  padding: 20px;
+  border: 3px solid;
+  border-image: linear-gradient(
+    to bottom,
+    var(--color-purple),
+    var(--color-orange)
+    )
+    1;
+  border-radius: 5px;
 }
 
 @media (max-width: 768px) {

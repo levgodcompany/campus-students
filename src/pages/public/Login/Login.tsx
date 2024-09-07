@@ -4,7 +4,7 @@ import { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { login } from "./types/login.types";
 import styles from "./Login.module.css";
 import LoginService from "./services/Login.service";
-import { loginSuccess, logout } from "../../../redux/slices/auth.slice";
+import { loginSuccess } from "../../../redux/slices/auth.slice";
 import { PrivateRoutes } from "../../../routes/routes";
 import Header from "../../../components/Header/Header";
 import { axiosError } from "../../../utilities/https.utility";
@@ -21,7 +21,7 @@ const Login = () => {
   const [isForgotPassword, setIsForgotPassword] = useState<boolean>(false);
 
   useEffect(() => {
-    dispatch(logout());
+    // dispatch(logout());
   }, []);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -35,21 +35,24 @@ const Login = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      if(isForgotPassword){
-        alert(`Tu contraseña es ( asdñfj asdfñkj asdf s )`)
-      }else {
+      if (isForgotPassword) {
+        alert(`Tu contraseña es ( asdñfj asdfñkj asdf s )`);
+      } else {
         const res = await LoginService.login(formData);
         dispatch(loginSuccess({ token: res.token }));
-        dispatch(loginStudentSuccess({
-          id: res.user.id,
-          fullName: res.user.fullName,
-          email: res.user.email,
-          idLevel: res.user.idLevel
-        }));
-        navigate(`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.UNITIES}/${res.user.idLevel}`);
-
+        dispatch(
+          loginStudentSuccess({
+            id: res.user.id,
+            fullName: res.user.fullName,
+            email: res.user.email,
+            levels: res.user.levels
+          })
+        );
+        navigate(
+          `/${PrivateRoutes.PRIVATE}/${PrivateRoutes.LEVELS}`
+        );
       }
-    } catch (err: any) {      
+    } catch (err: any) {
       setError(`${axiosError(err).message}`);
     }
   };
@@ -91,7 +94,10 @@ const Login = () => {
         <button type="submit" className={styles.button}>
           Iniciar sesión
         </button>
-        <button className={styles.buttonCancel} onClick={() => setIsForgotPassword(true)}>
+        <button
+          className={styles.buttonCancel}
+          onClick={() => setIsForgotPassword(true)}
+        >
           Olvidé mi contraseña
         </button>
       </form>
@@ -127,7 +133,12 @@ const Login = () => {
         <button type="submit" className={styles.button}>
           Enviar código
         </button>
-        <button className={styles.buttonCancel} onClick={() => setIsForgotPassword(false)}>Cancelar</button>
+        <button
+          className={styles.buttonCancel}
+          onClick={() => setIsForgotPassword(false)}
+        >
+          Cancelar
+        </button>
       </form>
     );
   };

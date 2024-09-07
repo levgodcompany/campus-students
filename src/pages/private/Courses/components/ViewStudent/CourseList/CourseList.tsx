@@ -44,73 +44,87 @@ const CourseList: React.FC<CourseListProps> = ({
   }, [course])
 
   const handleSelect = (module: Module, idCourse: number) => {
-    if (module.typeFile && module.fileURL) {
-      switch (module.typeFile) {
-        case "pdf":
-          // Lógica para manejar archivos PDF
-          setModuleSelet({
-            idCourse: idCourse,
-            id: module.id,
-            title: module.title,
-            url: "",
-            description: module.description,
-          });
-          // Aquí podrías establecer un estado o realizar otra acción específica para PDFs
-          break;
-
-        case "video":
-          // Lógica para manejar archivos de video
-          setModuleSelet({
-            idCourse: idCourse,
-            id: module.id,
-            title: module.title,
-            url: module.fileURL ? module.fileURL : "",
-            description: module.description,
-          });
-          // Aquí podrías establecer un estado o realizar otra acción específica para videos
-          break;
-
-        case "link":
-          // Lógica para manejar enlaces
-          console.log("Handling link");
-          // Aquí podrías establecer un estado o realizar otra acción específica para enlaces
-          break;
-        case "":
-          // Lógica para manejar archivos de video
-          setModuleSelet({
-            idCourse: idCourse,
-            id: module.id,
-            title: module.title,
-            url: "",
-            description: module.description,
-          });
-          // Aquí podrías establecer un estado o realizar otra acción específica para videos
-          break;
-
-        default:
-          console.log("Unknown file type");
-          // Manejo para tipos de archivo desconocidos
-          break;
+    if(module.enabled && course.enabled){
+      if (module.typeFile && module.fileURL) {
+        switch (module.typeFile) {
+          case "pdf":
+            // Lógica para manejar archivos PDF
+            setModuleSelet({
+              idCourse: idCourse,
+              id: module.id,
+              title: module.title,
+              url: "",
+              description: module.description,
+            });
+            // Aquí podrías establecer un estado o realizar otra acción específica para PDFs
+            break;
+  
+          case "video":
+            // Lógica para manejar archivos de video
+            setModuleSelet({
+              idCourse: idCourse,
+              id: module.id,
+              title: module.title,
+              url: module.fileURL ? module.fileURL : "",
+              description: module.description,
+            });
+            // Aquí podrías establecer un estado o realizar otra acción específica para videos
+            break;
+  
+          case "link":
+            // Lógica para manejar enlaces
+            console.log("Handling link");
+            // Aquí podrías establecer un estado o realizar otra acción específica para enlaces
+            break;
+          case "":
+            // Lógica para manejar archivos de video
+            setModuleSelet({
+              idCourse: idCourse,
+              id: module.id,
+              title: module.title,
+              url: "",
+              description: module.description,
+            });
+            // Aquí podrías establecer un estado o realizar otra acción específica para videos
+            break;
+  
+          default:
+            console.log("Unknown file type");
+            // Manejo para tipos de archivo desconocidos
+            break;
+        }
+      } else {
+        setModuleSelet({
+          idCourse: idCourse,
+          id: module.id,
+          title: module.title,
+          url: "",
+          description: module.description,
+        });
       }
-    } else {
-      setModuleSelet({
-        idCourse: idCourse,
-        id: module.id,
-        title: module.title,
-        url: "",
-        description: module.description,
-      });
+
     }
   };
 
   const isComplet = (module: Module, idCourse: number) => {
+
+
     const isBool = studentAndModule.find((s) => s.moduleId == module.id);
+  
+    const isClass = ()=> {
+      if(module.enabled && course.enabled) {
+        return isBool ? `${styles.moduleItem} ${styles.moduleItemComplet}` : styles.moduleItem
+      }else {
+        return `${styles.moduleItem} ${styles.moduleItemInactive}`
+      }
+    }
 
     return (
+      <>
       <li
         onClick={() => handleSelect(module, idCourse)}
         key={module.id}
-        className={isBool ? `${styles.moduleItem} ${styles.moduleItemComplet}` : styles.moduleItem}
+        className={isClass()}
       >
         <div className={styles.moduleInfo}>
           <span className={styles.icon}>
@@ -119,11 +133,12 @@ const CourseList: React.FC<CourseListProps> = ({
           <p className={styles.title}>{module.title}</p>
         </div>
       </li>
+      </>
     );
   };
 
   return (
-    <div className={styles.container}>
+    <div className={course.enabled ? styles.container : `${styles.container} ${styles.containerInactive}`}>
       <div className={styles.container_title}>
         <span className={styles.icon}>
           <FontAwesomeIcon icon={faDiceD20} />

@@ -10,9 +10,9 @@ import HeaderCampus from "../../../components/HeaderCampus/HeaderCampus";
 
 const Courses = () => {
   const [error, setError] = useState<string | null>(null);
-  const { idUnit, titleUnit } = useParams<{
+  const { idUnit, idCohort } = useParams<{
     idUnit: string;
-    titleUnit: string;
+    idCohort: string;
   }>();
 
   const dispatch = useDispatch();
@@ -41,7 +41,7 @@ const Courses = () => {
         />
       )}
       <div className={style.container_view}>
-        <ViewStudent idUnit={Number(idUnit)} />
+        <ViewStudent idUnit={Number(idUnit)} idCohort={Number(idCohort)} />
       </div>
     </div>
     </>

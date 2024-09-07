@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { levelDto } from "./types/Levels.types";
 import MessageError from "../../../components/ConfirCancelReservation/MessageError";
 import style from "./Levels.module.css";
 import { useNavigate } from "react-router-dom";
@@ -11,9 +10,8 @@ import {
   clearNavigation,
   updatePage,
 } from "../../../redux/slices/Navigations.slice";
-import TypeLevelAndLevel from "./components/TypeLevelAndLevel/TypeLevelAndLevel";
-import Header from "../../../components/Header/Header";
 import HeaderCampus from "../../../components/HeaderCampus/HeaderCampus";
+import Level from "./components/Level/Level";
 // import Header from "../../../components/Header/Header";
 
 const Levels = () => {
@@ -32,12 +30,17 @@ const Levels = () => {
     );
   }, []);
 
-  const handleCardClick = (level: levelDto) => {
-    const url = `/${PrivateRoutes.PRIVATE}/${PrivateRoutes.UNITIES}/${level.id}/${level.title}`;
+  const handleCardClick = (
+    levelTitle: string,
+    idLevel: number,
+    idCohort: number,
+    cohortTitle: string | null
+  ) => {
+    const url = `/${PrivateRoutes.PRIVATE}/${PrivateRoutes.UNITIES}/${idLevel}/${idCohort}`;
     dispatch(
       updatePage({
         prevTitle: `Niveles`,
-        newTitle: `Nivel: ${level.title}`,
+        newTitle: `Nivel: ${levelTitle}${cohortTitle != null ? `:${cohortTitle}` : ''}`,
       })
     );
     dispatch(
@@ -52,26 +55,27 @@ const Levels = () => {
 
   return (
     <>
-    <HeaderCampus />
-    <div className={style.container}>
-      <div className={style.container_nav}>
-        <Navigation />
+      <HeaderCampus />
+      <div className={style.container}>
+        <div className={style.container_nav}>
+          <Navigation />
+        </div>
+
+        {/* <h1 className={style.title}>Niveles</h1> */}
+
+        {error && (
+          <MessageError
+            title="Error"
+            message={error}
+            cancel={() => setError(null)}
+          />
+        )}
+
+        <div className={style.cardContainer}>
+          {/* <TypeLevelAndLevel select={handleCardClick} /> */}
+          <Level select={handleCardClick} />
+        </div>
       </div>
-
-      {/* <h1 className={style.title}>Niveles</h1> */}
-
-      {error && (
-        <MessageError
-          title="Error"
-          message={error}
-          cancel={() => setError(null)}
-        />
-      )}
-
-      <div className={style.cardContainer}>
-        <TypeLevelAndLevel select={handleCardClick} />
-      </div>
-    </div>
     </>
   );
 };

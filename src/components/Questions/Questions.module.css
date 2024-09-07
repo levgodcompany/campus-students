@@ -1,8 +1,10 @@
 .questionsContainer {
-  margin: 20px;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--color-grey);
+  display: flex;
+  flex-direction: column;
+  padding-left: 65px;
+
 }
 
 .faqTitle {
@@ -12,10 +14,14 @@
   margin-bottom: 10px;
   padding: 25px 10px 5px;
   color: var(--color);
+  text-align: center;
 }
 
 .faqList {
   margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    max-width: 630px;
 }
 
 .faqItem {
@@ -26,21 +32,44 @@
   cursor: pointer;
   font-size: 18px;
   font-weight: bold;
-  padding: 10px;
-  background-color: #262626;
+  padding: 15px 0;
   border-radius: 4px;
-  transition: background-color 0.3s ease;
 }
 
-.question:hover {
-  background-color: var(--background-color);
-}
+
 
 .answer {
   margin-top: 5px;
   padding: 10px;
-  border-left: 4px solid #262626;
-  border-radius: 0 4px 4px 4px;
   font-size: 16px;
-  color: #bbb;
+  color: #fff;
+  font-size: 18px;
+  margin-left: 70px;
+  max-width: 950px;
+}
+
+.containerQuestion {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.containerQuestion > p {
+  margin: 0;
+}
+
+.questionImg {
+  transform: rotate(180deg);
+}
+
+@media (max-width: 600px) {
+  .questionsContainer {
+    padding-left: 15px;
+  }
+}
+
+@media (max-width: 500px) {
+  .answer {
+    margin-left: 0px;
+  }
 }

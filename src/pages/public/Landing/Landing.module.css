@@ -1,41 +1,63 @@
+.landingHeader {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  background-color: var(--color-grey);
+  padding: 20px;
+  align-items: flex-start;
+}
+
+.landingHeaderInfo {
+  max-width: 400px;
+}
+
+.landingHeaderInfo_title {
+  margin: 0;
+}
+
+.landingHeaderInfo_subtitle {
+
+}
+
+.landingHeaderInfoContainerImg {
+  max-width: 325px;
+}
+
+.landingHeaderInfo_img {
+  width: 100%;
+}
+
+.landingContainer {
+  background-image: linear-gradient(180deg, var(--color-grey) 2%, var(--color-purple) 30%, var(--color-purple) 100%);
+  padding: 25px 0;
+}
+
 .landingContainerTeachers {
-  margin: 20px 10px 0;
-  background-color: #262626;
-  padding: 0 0 35px;
+  background-color: var(--color-grey);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
 }
 
 .teacherTitle {
-  font-size: 32px;
-  font-weight: bold;
-  margin: 0;
-  margin-bottom: 10px;
-  padding: 25px 10px 5px;
-  text-align: center;
-  color: var(--color);
+
 }
 
 .teacherDescription {
-  font-size: 18px;
-  margin-bottom: 30px;
   text-align: center;
-  color: #bbb;
-  padding: 5px 20px;
-  max-width: 717px;
-  margin: auto;
+  margin: 0 10px 30px;
 }
 
-.landingContainerAaci {
-  margin: 20px 10px 0;
-}
 
-.aaciTitle {
-  font-weight: bold;
-  font-size: 35px;
-  /* letter-spacing: 0.00rem; */
-  text-transform: none;
-  line-height: 1.25;
-}
 
-.aaciSpan {
-  color: var(--color-orange);
+@media (max-width: 850px) {
+  .landingHeaderInfoContainerImg {
+    max-width: 250px;
+  }
+  
+  .landingHeaderInfo_img {
+    width: 100%;
+  }
 }

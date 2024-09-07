@@ -1,5 +1,6 @@
 import { useState } from "react";
 import style from "./Questions.module.css";
+import flecha from "../../assets/Flecha.svg";
 
 const Questions = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -61,11 +62,14 @@ const Questions = () => {
               className={style.question}
               onClick={() => toggleQuestion(index)}
             >
-              {faq.question}
-            </div>
+              <div className={style.containerQuestion}>
+                <img className={activeIndex === index ? '' : style.questionImg} src={flecha} alt="" />
+                <p>{faq.question}</p>
+              </div>
             {activeIndex === index && (
               <div className={style.answer}>{faq.answer}</div>
             )}
+            </div>
           </div>
         ))}
       </div>

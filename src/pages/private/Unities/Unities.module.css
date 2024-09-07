@@ -53,6 +53,10 @@
   overflow: auto;
 }
 
+.cardInactive {
+  background-image: linear-gradient(to bottom, #d97706, var(--color-grey));
+}
+
 .cardInternal {
   padding: 10px;
   border-radius: 3px;

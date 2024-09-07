@@ -3,6 +3,10 @@
   width: 100%;
 }
 
+.containerInactive {
+  opacity: 0.5;
+}
+
 .container_title {
   display: flex;
   gap: 10px;
@@ -74,6 +78,10 @@
   font-weight: 400;
   margin-top: 16px;
   opacity: 0.85;
+}
+
+.moduleItemInactive {
+  background-color: #666;
 }
 
 .moduleItemComplet {

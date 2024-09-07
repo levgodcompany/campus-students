@@ -1,14 +1,28 @@
 import { axiosInstance } from "../../../../services/axiosConfig.service";
-import { ApiResponse } from "../../../../utilities/https.utility";
 import { login } from "../types/login.types";
 
-type student = {
+// DTO para Cohort
+interface CohortDTO {
+  id: number;
+  title: string;
+  enabled?: boolean;
+}
+
+// DTO para Level
+interface LevelDTO {
+  id: number;
+  title: string;
+  cohorts: CohortDTO[];
+}
+
+// DTO para Student
+interface StudentDTO {
   id: number;
   fullName: string;
-  idLevel: number;
   email: string;
-};
-type response = { user: student; token: string };
+  levels: LevelDTO[];
+}
+type response = { user: StudentDTO; token: string };
 class LoginService {
   async login(data: login) {
     try {

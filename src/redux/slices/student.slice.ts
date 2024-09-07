@@ -1,11 +1,32 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export type StudentState = {
+interface CohortDTO {
+  id: number;
+  title: string;
+  enabled?: boolean;
+}
+
+// DTO para Level
+interface LevelDTO {
+  id: number;
+  title: string;
+  cohorts: CohortDTO[];
+}
+
+// DTO para Student
+export interface StudentState {
   id: number;
   fullName: string;
   email: string;
-  idLevel: number;
-};
+  levels: LevelDTO[];
+}
+
+// export type StudentState = {
+//   id: number;
+//   fullName: string;
+//   email: string;
+//   idLevel: number;
+// };
 
 const key = "student";
 

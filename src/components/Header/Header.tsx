@@ -30,8 +30,8 @@ const Header = () => {
           </ul>
         </nav>
         <div className={styles.actionsDesktop}>
-          <span onClick={() => onClickNav(PublicRoutes.LEVEL)}>Contacto</span>
-          <span onClick={() => onClickNav(PublicRoutes.LOGIN)}>Campus</span>
+          <span className={styles.actionsDesktopContact} onClick={() => onClickNav(PublicRoutes.LEVEL)}>Contacto</span>
+          <span className={styles.actionsDesktopCampus} onClick={() => onClickNav(PublicRoutes.LOGIN)}>Campus</span>
         </div>
       </header>
 

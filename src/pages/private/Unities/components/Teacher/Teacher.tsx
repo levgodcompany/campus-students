@@ -9,21 +9,23 @@ interface TeacherProps {
 const Teacher: React.FC<TeacherProps> = ({ teachers }) => {
   return (
     <div className={style.teacherContainer}>
-      {teachers.map((teacher) => (
-        <div key={teacher.id} className={style.teacherCard}>
-          <div className={style.imageContainer}>
-            <img
-              src={teacher.imgUrl || "https://via.placeholder.com/150"} // Imagen por defecto si no hay URL
-              alt={`${teacher.fullName}`}
-              className={style.teacherImage}
-            />
-          </div>
-          <div className={style.teacherInfo}>
-            <p className={style.teacherName}>{teacher.fullName}</p>
-          </div>
+       
+    {teachers.map((teacher) => (
+      <div key={teacher.id} className={style.teacherCard}>
+        <div className={style.imageContainer}>
+          <img
+            src={teacher.imgUrl || "https://via.placeholder.com/150"} // Imagen por defecto si no hay URL
+            alt={`${teacher.fullName}`}
+            className={style.teacherImage}
+          />
         </div>
-      ))}
-    </div>
+        <div className={style.teacherInfo}>
+          <p className={style.teacherName}>{teacher.fullName}</p>
+          <p className={style.teacherLastName}>Profesor</p>
+        </div>
+      </div>
+    ))}
+  </div>
   );
 };
 

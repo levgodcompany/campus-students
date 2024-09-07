@@ -22,6 +22,7 @@ export type CourseAndModules = {
   order: number;
   idUnit: number;
   modules: Module[];
+  enabled: boolean;
 };
 
 export type CourseInfoBasic = {

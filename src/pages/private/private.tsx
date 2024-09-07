@@ -7,21 +7,24 @@ const Dashboard = lazy(() => import("./Dashboard/Dashboard"));
 const Levels = lazy(() => import("./Levels/Levels"));
 const Unities = lazy(() => import("./Unities/Unities"));
 const Courses = lazy(() => import("./Courses/Courses"));
-const Cohorts = lazy(() => import("./Cohorts/Cohorts"));
+const ClassOnlive = lazy(() => import("./ClassOnlivel/ClassOnlive"));
 
 function Private() {
   return (
     <RoutesWithNotFound>
-      <Route index element={<Navigate to={`${PrivateRoutes.DASHBOARD}`} />} />
+      <Route index element={<Navigate to={`${PrivateRoutes.LEVELS}`} />} />
       <Route path={`${PrivateRoutes.DASHBOARD}`} element={<Dashboard />} />
       <Route path={`${PrivateRoutes.LEVELS}`} element={<Levels />} />
-      <Route path={`${PrivateRoutes.COHORTS}`} element={<Cohorts />} />
       <Route
-        path={`${PrivateRoutes.UNITIES}/:idLevel/*`}
+        path={`${PrivateRoutes.CLASS_ON_LIVE}/:idCohort`}
+        element={<ClassOnlive />}
+      />
+      <Route
+        path={`${PrivateRoutes.UNITIES}/:idLevel/:idCohort`}
         element={<Unities />}
       />
       <Route
-        path={`${PrivateRoutes.COURSES}/:idUnit/:titleUnit/*`}
+        path={`${PrivateRoutes.COURSES}/:idUnit/:idCohort/*`}
         element={<Courses />}
       />
     </RoutesWithNotFound>

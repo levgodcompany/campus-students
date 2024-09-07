@@ -1,0 +1,61 @@
+.container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 24px;
+  color: #450c1f; /* Color principal */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.classList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.classCard {
+  background-color: #feffd5; /* Color para los items */
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.classTitle {
+  font-size: 18px;
+  color: #9e2d49; /* Color secundario */
+  margin-bottom: 10px;
+}
+
+.classDescription {
+  font-size: 14px;
+  color: #210110; /* Otro color para texto */
+  margin-bottom: 15px;
+}
+
+.classLink {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  background-color: #450c1f; /* Botón con color principal */
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.classLink:hover {
+  background-color: #9e2d49;
+}
+
+.loading,
+.error {
+  text-align: center;
+  font-size: 18px;
+  color: #450c1f;
+}

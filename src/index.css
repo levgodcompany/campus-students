@@ -14,8 +14,6 @@
 }
 
 :root {
-  --primary-color: #00A8E1;
-  --secondary-color: #168eb7;
   --color-description: #817f80;
   --color-title: #303030;
   --background-color: #1a1a1a;
@@ -24,6 +22,12 @@
   --background-button: #262626;
   --color-orange: #d97706;
   --color-violet: #8e169b;
+  /* Colors */
+  --color-white: #f1f1f1;
+  --color-black: #1a1a1a;
+  --color-purple: #8e169b;
+  --color-orange: #d97706;
+  --color-grey: #383838;
 }
 
 a {
@@ -67,7 +71,6 @@ button:focus-visible {
 /* Estilo general para la barra de desplazamiento */
 ::-webkit-scrollbar {
   width: 5px; /* Ancho de la barra de desplazamiento */
- 
 }
 
 /* Estilo del track (la parte por donde se desplaza la barra) */
@@ -81,7 +84,6 @@ button:focus-visible {
   background-color: #000; /* Color de la barra de desplazamiento */
   /* border-radius: 10px; Bordes redondeados */
   border: 3px solid rgba(255, 0, 0, 0); /* Borde alrededor del thumb */
-  
 }
 
 /* Estilo del thumb cuando se pasa el cursor por encima */

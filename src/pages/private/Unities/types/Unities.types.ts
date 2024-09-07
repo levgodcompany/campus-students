@@ -4,6 +4,7 @@ export type Unit = {
     description: string;
     order: number;
     idLevel: number;
+    enabled: boolean;
 }
 
 export type UnitCreate = {
@@ -17,5 +18,5 @@ export type UnitCreate = {
 export type TeacherDto = {
     id: number;
     fullName: string;
-    imgUrl: string;
+    imgUrl: string | null;
 }
