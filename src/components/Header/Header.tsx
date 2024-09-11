@@ -4,9 +4,9 @@ import styles from "./Header.module.css";
 import { PublicRoutes } from "../../routes/routes";
 import logo from "../../assets/INHOUSE.svg"
 
-interface HeaderProps {
-  items: string[];
-}
+// interface HeaderProps {
+//   items: string[];
+// }
 const Header = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);

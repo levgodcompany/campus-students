@@ -6,7 +6,7 @@ import style from "./Level.module.css";
 import Header from "../../../components/Header/Header";
 import Teacher from "./components/Teacher/Teacher";
 import { PublicRoutes } from "../../../routes/routes";
-import levelImg from "../../../assets/Level.svg";
+// import levelImg from "../../../assets/Level.svg";
 import Loading from "../../../components/Loading/Loading";
 
 const Level = () => {

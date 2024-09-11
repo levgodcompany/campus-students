@@ -1,5 +1,5 @@
 // ProgressStepper.tsx
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 import styles from './ProgressStepper.module.css'; // Asegúrate de crear este archivo CSS
 
 interface Step {
