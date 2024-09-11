@@ -5,23 +5,28 @@ import { login } from "./types/login.types";
 import styles from "./Login.module.css";
 import LoginService from "./services/Login.service";
 import { loginSuccess } from "../../../redux/slices/auth.slice";
-import { PrivateRoutes } from "../../../routes/routes";
-import Header from "../../../components/Header/Header";
+import { PrivateRoutes, PublicRoutes } from "../../../routes/routes";
 import { axiosError } from "../../../utilities/https.utility";
 import { loginStudentSuccess } from "../../../redux/slices/student.slice";
+import logoV1 from "../../../assets/INHOUSEV1.svg";
+import flecha from "../../../assets/Flecha.svg";
 
 const Login = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  // const [formData, setFormData] = useState<login>({
+  //   email: "lean@gmail.com",
+  //   password: "43028674",
+  // });
   const [formData, setFormData] = useState<login>({
-    email: "lean@gmail.com",
-    password: "43028674",
+    email: "",
+    password: "",
   });
   const [error, setError] = useState<string | null>(null);
   const [isForgotPassword, setIsForgotPassword] = useState<boolean>(false);
 
   useEffect(() => {
-    // dispatch(logout());
+    window.scrollTo(0, 0);
   }, []);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -45,17 +50,19 @@ const Login = () => {
             id: res.user.id,
             fullName: res.user.fullName,
             email: res.user.email,
-            levels: res.user.levels
+            levels: res.user.levels,
           })
         );
-        navigate(
-          `/${PrivateRoutes.PRIVATE}/${PrivateRoutes.LEVELS}`
-        );
+        navigate(`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.LEVELS}`);
       }
     } catch (err: any) {
       setError(`${axiosError(err).message}`);
     }
   };
+
+  const redirectLanding = ()=> {
+    navigate(`/${PublicRoutes.PUBLIC}/${PublicRoutes.LANDING}`);
+  }
 
   const viewLogin = () => {
     return (
@@ -145,9 +152,16 @@ const Login = () => {
 
   return (
     <>
-      <Header />
       <div className={styles.container}>
-        {isForgotPassword ? viewIsForgotPassword() : viewLogin()}
+        <div className={styles.containerForm}>
+          <div className={styles.containerHeader}>
+            <div className={styles.containerHeaderFelcha}>
+              <img onClick={redirectLanding} className={styles.imgFlecha} src={flecha} alt="" />
+            </div>
+            <img className={styles.imgLogo} src={logoV1} alt="" />
+          </div>
+          {isForgotPassword ? viewIsForgotPassword() : viewLogin()}
+        </div>
       </div>
     </>
   );

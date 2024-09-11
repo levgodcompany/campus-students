@@ -1,0 +1,63 @@
+/* Estilos para el contenedor del loading */
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: var(--color-grey);
+  /* font-family: "Press Start 2P", cursive; Fuente retro para el estilo de videojuegos */
+  color: #fff;
+}
+
+/* Contenedor del spinner y los puntos */
+.spinnerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Contenedor de puntos de carga */
+.dots {
+  display: flex;
+  justify-content: space-between;
+  width: 80px;
+}
+
+/* Estilos para los puntos */
+.dot {
+  background-color: var(--color-orange);
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  animation: bounce 1.5s infinite;
+}
+
+/* Animación de rebote de los puntos */
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+/* Aplicar retraso para la animación secuencial */
+.dot:nth-child(1) {
+  animation-delay: 0s;
+}
+.dot:nth-child(2) {
+  animation-delay: 0.3s; /* Ajusta el retraso para que se mueva después del primero */
+}
+.dot:nth-child(3) {
+  animation-delay: 0.6s; /* Ajusta el retraso para que se mueva después del segundo */
+}
+
+/* Estilos para el texto de carga */
+.loadingText {
+  margin-top: 16px;
+  font-size: 24px;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Efecto de sombra para el texto */
+}

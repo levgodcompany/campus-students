@@ -4,6 +4,9 @@ import styles from "./Header.module.css";
 import { PublicRoutes } from "../../routes/routes";
 import logo from "../../assets/INHOUSE.svg"
 
+interface HeaderProps {
+  items: string[];
+}
 const Header = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,11 +29,14 @@ const Header = () => {
         </div>
         <nav className={styles.navDesktop}>
           <ul>
-            <li onClick={() => onClickNav(PublicRoutes.LANDING)}>Ingles</li>
+            <li onClick={() => onClickNav(PublicRoutes.LANDING)}>Home</li>
+            <li onClick={() => onClickNav(PublicRoutes.LANDING)}>Niveles</li>
+            <li onClick={() => onClickNav(PublicRoutes.LANDING)}>Referentes</li>
+            <li onClick={() => onClickNav(PublicRoutes.LANDING)}>Certificados</li>
           </ul>
         </nav>
         <div className={styles.actionsDesktop}>
-          <span className={styles.actionsDesktopContact} onClick={() => onClickNav(PublicRoutes.LEVEL)}>Contacto</span>
+          <span className={styles.actionsDesktopContact} onClick={() => onClickNav(PublicRoutes.CONTACT)}>Contacto</span>
           <span className={styles.actionsDesktopCampus} onClick={() => onClickNav(PublicRoutes.LOGIN)}>Campus</span>
         </div>
       </header>

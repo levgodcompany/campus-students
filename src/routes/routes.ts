@@ -4,6 +4,7 @@ export const PublicRoutes = {
   LEVEL: "level",
   PRE_REGISTRATION: "pre-inscripcion",
   LOGIN: "singin",
+  CONTACT: "contact",
   SINGUP: "singup",
   FORGOT_PASSWORD: "forgot-password",
 };
@@ -16,7 +17,7 @@ export const PrivateRoutes = {
   COURSES: "courses",
   MODULES: "modules",
   STUDENTS: "students",
-  CLASS_ON_LIVE: "class-onlives"
+  CLASS_ON_LIVE: "class-onlives",
 };
 
 export const PrivateRoutesHttp = {
@@ -35,6 +36,5 @@ export const PrivateRoutesHttp = {
   SUSCRIPTION: "suscription",
   EXAMS_LEVELS: "level-exams",
   COHORTS: "cohorts",
-  CLASS_ON_LIVE: "class-onlives"
-
+  CLASS_ON_LIVE: "class-onlives",
 };

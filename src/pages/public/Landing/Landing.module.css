@@ -9,15 +9,15 @@
 }
 
 .landingHeaderInfo {
-  max-width: 400px;
+  max-width: 600px;
 }
 
 .landingHeaderInfo_title {
   margin: 0;
+  font-size: 3rem;
 }
 
 .landingHeaderInfo_subtitle {
-
 }
 
 .landingHeaderInfoContainerImg {
@@ -29,7 +29,11 @@
 }
 
 .landingContainer {
-  background-image: linear-gradient(180deg, var(--color-grey) 2%, var(--color-purple) 30%, var(--color-purple) 100%);
+  background-image: linear-gradient(
+    180deg,
+    var(--color-grey) 0%,
+    var(--color-purple) 100%
+  );
   padding: 25px 0;
 }
 
@@ -42,7 +46,6 @@
 }
 
 .teacherTitle {
-
 }
 
 .teacherDescription {
@@ -50,13 +53,57 @@
   margin: 0 10px 30px;
 }
 
+.footer {
+  background-image: url(/src/assets/Footer.svg);
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-attachment: local;
+  height: 505px;
+  width: 100%;
+  position: relative;
+}
 
+.footerConatainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 0;
+}
 
-@media (max-width: 850px) {
+.footerFotterConatainer {
+  position: absolute;
+  bottom: 0;
+  z-index: 15;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  left: 0;
+  right: 0;
+  gap: 20px;
+  padding: 15px;
+}
+
+.footerFotterConatainer_item {
+}
+
+.footerImgLogo {
+  width: 250px;
+}
+
+@media (max-width: 970px) {
+  .landingHeaderInfo {
+    max-width: 400px;
+  }
+}
+@media (max-width: 480px) {
+  .landingHeaderInfo_title {
+    font-size: 2.5rem;
+  }
   .landingHeaderInfoContainerImg {
     max-width: 250px;
   }
-  
+
   .landingHeaderInfo_img {
     width: 100%;
   }

@@ -5,8 +5,8 @@
 
 .levelContainerTitle{
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  flex-direction: row;
+  gap: 40px;
   align-items: flex-start;
   padding: 20px;
   /* border: 1px solid #fff; */
@@ -62,7 +62,13 @@
   font-size: 2.25rem;
   line-height: 2.75rem;
   text-align: center;
-  margin-bottom: 2.25rem;
+  margin-bottom: 10px;
+}
+
+.cohortsTitleDescript {
+  text-align: center;
+  margin: 0;
+  margin-bottom: 40px;
 }
 
 .cohortsContainer {
@@ -75,9 +81,16 @@
 }
 
 .cohortCard {
-  border: 1px solid #393b43;
+  border: 1px solid;
+  border-image: linear-gradient(
+    to bottom,
+    var(--color-purple),
+    var(--color-orange)
+    )
+    1;
   padding: 15px;
   border-radius: 3px;
+  min-width: 250px;
 }
 
 .cohortTitle {
@@ -86,18 +99,20 @@
   margin: 0;
   display: flex;
   gap: 15px;
-  align-items: center;
+  align-items: stretch;
   padding-bottom: 10px;
-  border-bottom: 1px solid #262626;
+  /* border-bottom: 1px solid #262626; */
+  flex-direction: column;
 }
 
 .cohortTitleCloseIscription {
   margin: 0;
   font-size: 10px;
   padding: 5px 15px;
-  background-color: #262626;
+  background-color: var(--color-purple);
   border-radius: 25px;
   font-weight: 500;
+  text-align: center;
 }
 
 .cohortDescription {
@@ -137,13 +152,10 @@
 }
 
 .datesDateButton {
-  padding: 0.75rem;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
-  border-radius: 9999px;
-  background-color: #262626;
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+  background-color: var(--color-orange);
   color: #fff;
 }
 

@@ -7,12 +7,13 @@ import Private from "./pages/private/private";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import Public from "./pages/public/public";
+import Loading from "./components/Loading/Loading";
 
 function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <Suspense fallback={<h1>Cargando...</h1>}>
+        <Suspense fallback={<Loading />}>
           <RoutesWithNotFound>
             <Route
               path="/"

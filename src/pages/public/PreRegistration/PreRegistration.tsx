@@ -31,6 +31,9 @@ const PreRegistration = () => {
   });
 
   const [isUnderage, setIsUnderage] = useState(false);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
 
   useEffect(() => {
     if (formDataStudent.birthDate) {
@@ -61,9 +64,13 @@ const PreRegistration = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-        if(!isUnderage) {
-            await PreRegistrationService.preRegistration(formDataStudent, Number(idLevel), Number(idCohort))
-        }
+      if (!isUnderage) {
+        await PreRegistrationService.preRegistration(
+          formDataStudent,
+          Number(idLevel),
+          Number(idCohort)
+        );
+      }
       console.log({ student: formDataStudent, tutor: formDataTutor });
     } catch (err) {
       console.error("Error submitting the form", err);
@@ -110,7 +117,7 @@ const PreRegistration = () => {
         <div className={styles.formAllGroup}>
           <div className={styles.formGroup}>
             <label htmlFor="tutorDni" className={styles.label}>
-              DNI *
+              D.N.I *
             </label>
             <input
               type="text"
@@ -166,7 +173,7 @@ const PreRegistration = () => {
 
         <div className={styles.formGroup}>
           <label htmlFor="tutorEmail" className={styles.label}>
-            Correo electrónico *
+            Correo Electrónico *
           </label>
           <input
             type="email"
@@ -185,121 +192,125 @@ const PreRegistration = () => {
 
   return (
     <>
-    <Header />
-    <div className={styles.container}>
-      {/* <span>Pre inscripción a {leveltitle}</span> */}
-      <div className={styles.containerForm}>
-        <form onSubmit={handleSubmit} className={styles.form}>
-          {/* Formulario de Estudiante */}
-          <h3 className={styles.title}>Pre inscripción a {leveltitle}</h3>
-          <div className={styles.formAllGroup}>
+      <Header />
+      <div className={styles.container}>
+        {/* <span>Pre inscripción a {leveltitle}</span> */}
+        <div className={styles.containerForm}>
+          <form onSubmit={handleSubmit} className={styles.form}>
+            {/* Formulario de Estudiante */}
+            <div className={styles.formHeader}>
+              <h3 className={styles.title}>Pre-Inscripción {leveltitle}</h3>
+              <p>Datos del Alumno/a</p>
+            </div>
+            <div className={styles.formAllGroup}>
+              <div className={styles.formGroup}>
+                <label htmlFor="name" className={styles.label}>
+                  Nombre *
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  className={styles.input}
+                  placeholder="Ingresa tu nombre"
+                  value={formDataStudent.name}
+                  onChange={handleStudentChange}
+                  required
+                />
+              </div>
+              <div className={styles.formGroup}>
+                <label htmlFor="lastName" className={styles.label}>
+                  Apellido *
+                </label>
+                <input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  className={styles.input}
+                  placeholder="Ingresa tu apellido"
+                  value={formDataStudent.lastName}
+                  onChange={handleStudentChange}
+                  required
+                />
+              </div>
+            </div>
+
+            <div className={styles.formAllGroup}>
+              
+              <div className={styles.formGroup}>
+                <label htmlFor="dni" className={styles.label}>
+                  D.N.I *
+                </label>
+                <input
+                  type="text"
+                  id="dni"
+                  name="dni"
+                  className={styles.input}
+                  placeholder="Ingresa tu DNI"
+                  value={formDataStudent.dni}
+                  onChange={handleStudentChange}
+                  required
+                />
+              </div>
+              <div className={styles.formGroup}>
+                <label htmlFor="birthDate" className={styles.label}>
+                  Fecha De Nacimiento *
+                </label>
+                <input
+                  type="date"
+                  id="birthDate"
+                  name="birthDate"
+                  className={styles.input}
+                  value={formDataStudent.birthDate}
+                  onChange={handleStudentChange}
+                  required
+                />
+              </div>
+            </div>
+
+            <div className={styles.formAllGroup}>
+              <div className={styles.formGroup}>
+                <label htmlFor="tel" className={styles.label}>
+                  Teléfono
+                </label>
+                <input
+                  type="tel"
+                  id="tel"
+                  name="tel"
+                  className={styles.input}
+                  placeholder="Ingresa tu teléfono"
+                  value={formDataStudent.tel}
+                  onChange={handleStudentChange}
+                  required
+                />
+              </div>
+            </div>
+
             <div className={styles.formGroup}>
-              <label htmlFor="name" className={styles.label}>
-                Nombre *
+              <label htmlFor="email" className={styles.label}>
+                Correo Electrónico *
               </label>
               <input
-                type="text"
-                id="name"
-                name="name"
+                type="email"
+                id="email"
+                name="email"
                 className={styles.input}
-                placeholder="Ingresa tu nombre"
-                value={formDataStudent.name}
+                placeholder="Ingresa tu correo electrónico"
+                value={formDataStudent.email}
                 onChange={handleStudentChange}
                 required
               />
             </div>
-            <div className={styles.formGroup}>
-              <label htmlFor="lastName" className={styles.label}>
-                Apellido *
-              </label>
-              <input
-                type="text"
-                id="lastName"
-                name="lastName"
-                className={styles.input}
-                placeholder="Ingresa tu apellido"
-                value={formDataStudent.lastName}
-                onChange={handleStudentChange}
-                required
-              />
-            </div>
-          </div>
 
-          <div className={styles.formAllGroup}>
-            <div className={styles.formGroup}>
-              <label htmlFor="birthDate" className={styles.label}>
-                Fecha de nacimiento *
-              </label>
-              <input
-                type="date"
-                id="birthDate"
-                name="birthDate"
-                className={styles.input}
-                value={formDataStudent.birthDate}
-                onChange={handleStudentChange}
-                required
-              />
-            </div>
-            <div className={styles.formGroup}>
-              <label htmlFor="dni" className={styles.label}>
-                DNI *
-              </label>
-              <input
-                type="text"
-                id="dni"
-                name="dni"
-                className={styles.input}
-                placeholder="Ingresa tu DNI"
-                value={formDataStudent.dni}
-                onChange={handleStudentChange}
-                required
-              />
-            </div>
-          </div>
+            {/* Formulario de Tutor, visible si el estudiante es menor de 18 años */}
+            {isUnderage && viewFormTutor()}
 
-          <div className={styles.formAllGroup}>
-            <div className={styles.formGroup}>
-              <label htmlFor="tel" className={styles.label}>
-                Teléfono
-              </label>
-              <input
-                type="tel"
-                id="tel"
-                name="tel"
-                className={styles.input}
-                placeholder="Ingresa tu teléfono"
-                value={formDataStudent.tel}
-                onChange={handleStudentChange}
-                required
-              />
-            </div>
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="email" className={styles.label}>
-              Correo electrónico *
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              className={styles.input}
-              placeholder="Ingresa tu correo electrónico"
-              value={formDataStudent.email}
-              onChange={handleStudentChange}
-              required
-            />
-          </div>
-
-          {/* Formulario de Tutor, visible si el estudiante es menor de 18 años */}
-          {isUnderage && viewFormTutor()}
-
-          <button type="submit" className={styles.submitButton}>
-            Enviar
-          </button>
-        </form>
+            <button type="submit" className={styles.submitButton}>
+              Enviar
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
     </>
   );
 };

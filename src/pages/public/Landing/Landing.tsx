@@ -6,13 +6,14 @@ import { TeacherDto } from "./types/Landing.types";
 import LandingService from "./services/Landing.service";
 import Teacher from "./components/Teacher/Teacher";
 import Questions from "../../../components/Questions/Questions";
-import AACIInfo from "./components/AACIInfo/AACIInfo";
 import imgHeaderTeacher from "../../../assets/img1.svg";
+import inHouseImg from "../../../assets/INHOUSE.svg";
 
 const Landing = () => {
   const [teachers, setTeachers] = useState<TeacherDto[]>([]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     fetchTeachers();
   }, []);
 
@@ -31,11 +32,14 @@ const Landing = () => {
       <div className={styles.landingHeader}>
         <div className={styles.landingHeaderInfo}>
           <h1 className={styles.landingHeaderInfo_title}>
-            Transforma tu futuro, estudia online con nosotros
+            Descubre nuevas oportunidades y estudia online
           </h1>
           <p className={styles.landingHeaderInfo_subtitle}>
-            Un espacio para aprender, crecer y alcanzar tus metas desde
-            cualquier lugar
+            Aprender inglés es más que dominar un idioma; es abrir puertas a
+            nuevas oportunidades, conexiones y crecimiento personal. Con
+            nosotros, superarás tus límites, alcanzarás tus metas y disfrutarás
+            cada lección con un enfoque dinámico y motivador. ¡Únete y
+            transforma tu futuro!
           </p>
         </div>
         <div className={styles.landingHeaderInfoContainerImg}>
@@ -46,24 +50,38 @@ const Landing = () => {
           />
         </div>
       </div>
+
       <div className={styles.landingContainer}>
         <TypeLevelAndLevel />
       </div>
       <div className={styles.landingContainerTeachers}>
         <h2 className={styles.teacherTitle}>Referentes</h2>
         <p className={styles.teacherDescription}>
-          Aprende con instructores altamente capacitados y con amplia
-          experiencia en la enseñanza del inglés a estudiantes de diversas
-          culturas. Nuestros profesores están dedicados a ayudarte a alcanzar un
-          dominio avanzado del idioma, utilizando métodos efectivos y adaptados
-          a tus necesidades
+          Nuestros mentores de inglés cuentan con experiencia y excelentes
+          técnicas pedagógicas, brindando un aprendizaje efectivo y dinámico que
+          facilita la comprensión y el dominio del idioma en diferentes
+          contextos
         </p>
         <Teacher teachers={teachers} />
       </div>
-      {/* <div className={styles.landingContainerAaci}>
-        <AACIInfo />
-      </div> */}
       <Questions />
+      <footer className={styles.footer}>
+        <div className={styles.footerConatainer}>
+          <img className={styles.footerImgLogo} src={inHouseImg} alt="" />
+
+          <div className={styles.footerFotterConatainer}>
+            <span className={styles.footerFotterConatainer_item}>
+              Contáctos
+            </span>
+            <span className={styles.footerFotterConatainer_item}>
+              Términos y Condiciones
+            </span>
+            <span className={styles.footerFotterConatainer_item}>
+              Privacidad
+            </span>
+          </div>
+        </div>
+      </footer>
     </>
   );
 };

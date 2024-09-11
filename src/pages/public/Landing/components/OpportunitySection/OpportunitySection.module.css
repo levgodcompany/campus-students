@@ -1,0 +1,85 @@
+/* Contenedor principal */
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    border-radius: 10px;
+    color: white;
+    max-width: 1200px;
+    margin: 0 auto; /* Centrar la sección */
+    flex-wrap: wrap; /* Para hacer que se adapte mejor a pantallas pequeñas */
+  }
+  
+  /* Contenedor de texto */
+  .textContainer {
+    max-width: 600px;
+    flex: 1;
+  }
+  
+  /* Estilo de la cabecera */
+  .heading {
+    font-size: 4rem;
+    font-weight: bold;
+    margin: 0;
+    text-align: left;
+  }
+  
+  /* Estilo del párrafo */
+  .description {
+    font-size: 1.2rem;
+    margin-top: 20px;
+    text-align: left;
+  }
+  
+  /* Contenedor de la imagen */
+  .imageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    padding: 20px;
+  }
+  
+  /* Imagen del estudiante */
+  .studentImage {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+  }
+  
+  /* Diseño responsive */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column; /* Colocar los elementos uno debajo del otro */
+      text-align: center; /* Centramos el texto */
+    }
+  
+    .heading {
+      font-size: 3rem; /* Reducir el tamaño del texto en pantallas más pequeñas */
+    }
+  
+    .description {
+      font-size: 1rem; /* Reducir el tamaño de la descripción */
+    }
+  
+    .imageContainer {
+      margin-top: 20px;
+    }
+  
+    .studentImage {
+      width: 250px;
+      height: auto;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .heading {
+      font-size: 2.5rem; /* Ajuste adicional para pantallas más pequeñas */
+    }
+  
+    .description {
+      font-size: 0.9rem;
+    }
+  }
+  

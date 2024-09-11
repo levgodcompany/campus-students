@@ -9,23 +9,35 @@
   align-items: center;
 }
 
+.formHeader {
+  text-align: center;
+}
+
 .form {
   display: flex;
   flex-direction: column;
   gap: 20px; /* Ajustado para mayor separación */
   border: 1px solid var(--linear);
+  border-image: linear-gradient(to bottom, var(--color-purple), var(--color-orange)) 1;
+  border-radius: 5px;
   border-radius: 3px;
-  padding: 20px;
+  padding: 30px 60px;
 }
 
 .title {
   margin: 0;
   margin-bottom: 20px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
 }
 
 .tutorSectionTitle {
   margin: 0;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 18px;
 }
 
 .formAllGroup {
@@ -60,21 +72,19 @@
 
 .submitButton {
   width: 100%;
-  padding: 14px;
-  background-color: var(--background-button);
+  padding: 10px;
+  background-color: var(--color-orange);
   color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 400;
   margin-top: 16px;
-  opacity: 0.85;
 }
 
 .tutorSection {
   padding-top: 20px;
-  border-top: 1px solid var(--linear);
 }
 
 .select {
