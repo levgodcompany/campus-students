@@ -1,6 +1,6 @@
 export const PublicRoutes = {
   PUBLIC: "in-house",
-  LANDING: "landing",
+  LANDING: "academy",
   LEVEL: "level",
   PRE_REGISTRATION: "pre-inscripcion",
   LOGIN: "singin",

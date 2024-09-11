@@ -21,7 +21,7 @@ export const AuthGuard = ({ privateValidation }: Props) => {
       PublicValidationFragment
     )
   ) : (
-    <Navigate replace to={PublicRoutes.LOGIN} />
+    <Navigate replace to={`${PublicRoutes.PUBLIC}/${PublicRoutes.LANDING}`} />
   );
 };
 

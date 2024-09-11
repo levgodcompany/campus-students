@@ -19,7 +19,7 @@ function App() {
               path="/"
               element={
                 <Navigate
-                  to={`${PrivateRoutes.PRIVATE}/${PrivateRoutes.DASHBOARD}`}
+                  to={`${PrivateRoutes.PRIVATE}/${PrivateRoutes.LEVELS}`}
                   replace
                 />
               }
