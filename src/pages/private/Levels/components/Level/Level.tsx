@@ -1,6 +1,11 @@
 import { useAppSelector } from "../../../../../redux/hooks";
 interface LevelProps {
-  select: (levelTitle: string, idLevel: number, idCohort: number, cohortTitle: string | null) => void;
+  select: (
+    levelTitle: string,
+    idLevel: number,
+    idCohort: number,
+    cohortTitle: string | null
+  ) => void;
 }
 const Level: React.FC<LevelProps> = ({ select }) => {
   const studentState = useAppSelector((state) => state.student?.levels);
@@ -25,7 +30,9 @@ const Level: React.FC<LevelProps> = ({ select }) => {
                   <span>{level.title}</span>
                   {level.cohorts.map((c) => (
                     <div
-                      onClick={() => selectLevel(level.title, level.id, c.id,c.title)}
+                      onClick={() =>
+                        selectLevel(level.title, level.id, c.id, c.title)
+                      }
                       key={c.id}
                     >
                       {c.title}
@@ -36,7 +43,12 @@ const Level: React.FC<LevelProps> = ({ select }) => {
                 <div>
                   <span
                     onClick={() =>
-                      selectLevel(level.title, level.id, level.cohorts[0].id, null)
+                      selectLevel(
+                        level.title,
+                        level.id,
+                        level.cohorts[0].id,
+                        null
+                      )
                     }
                   >
                     {level.title}

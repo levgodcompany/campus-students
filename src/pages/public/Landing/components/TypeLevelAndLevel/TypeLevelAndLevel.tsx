@@ -31,7 +31,7 @@ const TypeLevelAndLevel = () => {
   }, []);
 
   const handleLevelClick = (id: number, levelTitle: string) => {
-    const title = `Ingles ${typeLevelSelect.typeLevelTitle} ${levelTitle}`
+    const title = `Inglés ${typeLevelSelect.typeLevelTitle} ${levelTitle}`
     navigate(`${PublicRoutes.LEVEL}/${id}/${title}`);
   };
 
