@@ -2,9 +2,6 @@
   padding: 20px;
 }
 
-.containerTitle {
-}
-
 .title {
   text-align: center;
   margin-bottom: 20px;
@@ -13,16 +10,12 @@
 
 .titleDescription {
   text-align: center;
-  margin-bottom: 20px;
   color: #fff;
+  width: min(800px, 100%);
+  margin: auto;
+  margin-bottom: 40px;
 }
 
-.containerInfo {
-  /* display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  gap: 8px; */
-}
 
 .cardContainerTeacher {
   grid-column: span 2 / span 2;
@@ -103,4 +96,10 @@
 
 .cardButton:hover {
   background-color: #0056b3;
+}
+
+@media(max-width: 800px){
+  .titleDescription {
+    text-align: justify;
+  }
 }

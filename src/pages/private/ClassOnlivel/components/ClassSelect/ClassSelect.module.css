@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-right: 20px;
+  padding: 20px;
 }
 
 /* Contenedor del video para mantener la relación de aspecto */
@@ -65,13 +65,14 @@
 
 .video_info {
   position: absolute;
-  width: 100%;
-  padding: 0 15px;
+  /* max-width: 96%; */
+  padding: 10px 15px 40px;
   box-sizing: border-box;
   overflow: auto;
   /* margin: auto; */
   margin-top: 60px;
   background-color: var(--background-button);
+  width: max(100%, 278px);
 }
 
 .containerButton {
@@ -79,17 +80,25 @@
   flex-direction: row;
   justify-content: flex-end;
   padding-bottom: 20px;
+  width: 100%;
+}
+
+.containerButton > button {
+  background-color: var(--color-grey);
+  color: #fff;
 }
 
 .buttonComplet {
   border-radius: 0;
   color: var(--color);
   /* background-color: var(--color-orange); */
-  background-image: linear-gradient(to right, var(--color-orange), var(--color-violet));
+  background-image: linear-gradient(
+    to right,
+    var(--color-orange),
+    var(--color-violet)
+  );
   border-style: none;
 }
-
-
 
 /* estilos de innerhtml */
 .video_info h1,

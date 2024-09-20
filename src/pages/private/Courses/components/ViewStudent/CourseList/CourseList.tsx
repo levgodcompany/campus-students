@@ -14,6 +14,7 @@ type CourseListProps = {
   setModuleSelet: (moduleSelect: {
     id: number;
     url: string;
+    typeFile: string;
     title: string;
     description: string;
     idCourse: number;
@@ -53,7 +54,8 @@ const CourseList: React.FC<CourseListProps> = ({
               idCourse: idCourse,
               id: module.id,
               title: module.title,
-              url: "",
+              typeFile: "pdf",
+              url: module.fileURL,
               description: module.description,
             });
             // Aquí podrías establecer un estado o realizar otra acción específica para PDFs
@@ -65,7 +67,8 @@ const CourseList: React.FC<CourseListProps> = ({
               idCourse: idCourse,
               id: module.id,
               title: module.title,
-              url: module.fileURL ? module.fileURL : "",
+              url: module.fileURL,
+              typeFile: "video",
               description: module.description,
             });
             // Aquí podrías establecer un estado o realizar otra acción específica para videos
@@ -83,6 +86,7 @@ const CourseList: React.FC<CourseListProps> = ({
               id: module.id,
               title: module.title,
               url: "",
+              typeFile: "pdf",
               description: module.description,
             });
             // Aquí podrías establecer un estado o realizar otra acción específica para videos
@@ -99,6 +103,7 @@ const CourseList: React.FC<CourseListProps> = ({
           id: module.id,
           title: module.title,
           url: "",
+          typeFile: "",
           description: module.description,
         });
       }

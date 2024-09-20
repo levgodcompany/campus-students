@@ -13,22 +13,80 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-:root {
-  --color-description: #817f80;
-  --color-title: #303030;
-  --background-color: #1a1a1a;
-  --color: #f1f1f1;
-  --linear: #393b43;
-  --background-button: #262626;
-  --color-orange: #d97706;
-  --color-violet: #8e169b;
-  /* Colors */
-  --color-white: #f1f1f1;
-  --color-black: #1a1a1a;
-  --color-purple: #8e169b;
-  --color-orange: #d97706;
-  --color-grey: #383838;
+/* Definir las propiedades personalizadas */
+@property --color-description {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #817f80;
 }
+
+@property --color-title {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #303030;
+}
+
+@property --background-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #1a1a1a;
+}
+
+@property --color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #f1f1f1;
+}
+
+@property --linear {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #393b43;
+}
+
+@property --background-button {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #262626;
+}
+
+@property --color-orange {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #d97706;
+}
+
+@property --color-violet {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #8e169b;
+}
+
+/* Colores adicionales */
+@property --color-white {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #f1f1f1;
+}
+
+@property --color-black {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #1a1a1a;
+}
+
+@property --color-purple {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #8e169b;
+}
+
+@property --color-grey {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #383838;
+}
+
 
 a {
   font-weight: 500;

@@ -10,10 +10,12 @@ import { useNavigate } from "react-router-dom";
 import { PublicRoutes } from "../../../../../routes/routes";
 import ModuleService from "../../services/Module.service";
 import { StudentAndModule } from "./types/student.type";
+import PdfViewer from "./PdfViewer/PdfViewer";
+import NotFile from "./NotFile/NotFile";
 
 interface ViewStudentProps {
   idUnit: number;
-  idCohort: number
+  idCohort: number;
 }
 
 const ViewStudent: React.FC<ViewStudentProps> = ({ idUnit, idCohort }) => {
@@ -29,6 +31,7 @@ const ViewStudent: React.FC<ViewStudentProps> = ({ idUnit, idCohort }) => {
   const [moduleSelect, setModuleSelet] = useState<{
     id: number;
     url: string;
+    typeFile: string;
     title: string;
     description: string;
     idCourse: number;
@@ -36,6 +39,7 @@ const ViewStudent: React.FC<ViewStudentProps> = ({ idUnit, idCohort }) => {
     id: 0,
     title: "",
     url: "",
+    typeFile: "",
     description: "",
     idCourse: 0,
   });
@@ -52,7 +56,9 @@ const ViewStudent: React.FC<ViewStudentProps> = ({ idUnit, idCohort }) => {
   const fechCoursesAndModules = async () => {
     try {
       const app = CoursesService.crud();
-      app.setUrl(`/unit/${idUnit}/cohort/${idCohort}/student/${studetState?.id}`);
+      app.setUrl(
+        `/unit/${idUnit}/cohort/${idCohort}/student/${studetState?.id}`
+      );
       const res = await app.findAll<CourseAndModules[]>();
       res.sort((a, b) => a.order - b.order);
       setCoursesAndModules(res);
@@ -94,22 +100,67 @@ const ViewStudent: React.FC<ViewStudentProps> = ({ idUnit, idCohort }) => {
       url: "",
       description: "",
       idCourse: 0,
+      typeFile: "",
     });
   };
 
-  return (
-    <div className={style.container}>
-      <div className={style.container_video}>
-        <ViewVideo
+  const renderFile = () => {
+    console.log("moduleSelect.typeFile", moduleSelect.typeFile);
+    if (moduleSelect.typeFile.length > 0) {
+      switch (moduleSelect.typeFile) {
+        case "video":
+          return (
+            <ViewVideo
+              id={moduleSelect.id}
+              title={moduleSelect.title}
+              url={moduleSelect.url}
+              description={moduleSelect.description}
+              studentAndModule={studetnAndModule}
+              idCourse={moduleSelect.idCourse}
+              load={setIsFechComplet}
+            />
+          );
+        case "pdf":
+          return (
+            <PdfViewer
+              id={moduleSelect.id}
+              title={moduleSelect.title}
+              url={moduleSelect.url}
+              description={moduleSelect.description}
+              studentAndModule={studetnAndModule}
+              idCourse={moduleSelect.idCourse}
+              load={setIsFechComplet}
+            />
+          );
+        default:
+          return (
+            <NotFile
+              id={moduleSelect.id}
+              title={moduleSelect.title}
+              description={moduleSelect.description}
+              studentAndModule={studetnAndModule}
+              idCourse={moduleSelect.idCourse}
+              load={setIsFechComplet}
+            />
+          );
+      }
+    } else {
+      return (
+        <NotFile
           id={moduleSelect.id}
           title={moduleSelect.title}
-          url={moduleSelect.url}
           description={moduleSelect.description}
           studentAndModule={studetnAndModule}
           idCourse={moduleSelect.idCourse}
           load={setIsFechComplet}
         />
-      </div>
+      );
+    }
+  };
+
+  return (
+    <div className={style.container}>
+      <div className={style.container_video}>{renderFile()}</div>
       <div className={style.list_video}>
         {coursesAndModules.length ? (
           coursesAndModules.map((c) => (

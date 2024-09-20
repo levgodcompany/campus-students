@@ -5,11 +5,13 @@ import { ClassOnLiveDto } from "./types/ClassOnlive";
 import styles from "./ClassOnlive.module.css"; // Importamos los estilos
 import HeaderCampus from "../../../components/HeaderCampus/HeaderCampus";
 import Navigation from "../../../components/Navigation/Navigation";
+import ClassSelect from "./components/ClassSelect/ClassSelect";
 
 const ClassOnlive = () => {
   const [classOnlives, setClassOnlives] = useState<ClassOnLiveDto[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectClass, setSelectClass] = useState<ClassOnLiveDto | null>(null);
 
   const { idCohort } = useParams<{ idCohort: string }>();
 
@@ -36,33 +38,43 @@ const ClassOnlive = () => {
     return <div className={styles.error}>{error}</div>;
   }
 
+  const close = () => {
+    setSelectClass(null);
+  };
+
   return (
     <>
       <HeaderCampus />
-      <div className={styles.container}>
+      <div className={styles.containerNav}>
         <Navigation />
-        <h1 className={styles.title}>Live Classes</h1>
-        <div className={styles.classList}>
-          {classOnlives.map((classOnlive) => (
-            <div key={classOnlive.id} className={styles.classCard}>
-              <h2 className={styles.classTitle}>
-                {classOnlive.title || "No Title"}
-              </h2>
-              <p className={styles.classDescription}>
-                {classOnlive.description || "No Description"}
-              </p>
-              <a
-                href={classOnlive.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.classLink}
-              >
-                Watch Class
-              </a>
-            </div>
-          ))}
-        </div>
       </div>
+
+      <>
+        {selectClass ? (
+          <div className={styles.containerClassSelect}>
+            <ClassSelect close={close} classS={selectClass} />
+          </div>
+        ) : (
+          <div className={styles.container}>
+          <h1 className={styles.title}>Clases Grabadas</h1>
+          <p className={styles.titleDescription}>
+            En esta sección vas a poder ver las grabaciones de las clases.
+          </p>
+          <div className={styles.classList}>
+            {classOnlives.map((classOnlive, i) => (
+              <div
+                key={classOnlive.id}
+                onClick={() => setSelectClass(classOnlive)}
+                className={styles.classCard}
+              >
+                <span className={styles.classTitle}>{ classOnlive.title || `Clase ${i + 1}`}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+  
+        )}
+      </>
     </>
   );
 };

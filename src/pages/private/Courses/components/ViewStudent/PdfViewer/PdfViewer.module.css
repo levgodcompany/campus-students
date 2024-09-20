@@ -85,11 +85,13 @@
   border-radius: 0;
   color: var(--color);
   /* background-color: var(--color-orange); */
-  background-image: linear-gradient(to right, var(--color-orange), var(--color-violet));
+  background-image: linear-gradient(
+    to right,
+    var(--color-orange),
+    var(--color-violet)
+  );
   border-style: none;
 }
-
-
 
 /* estilos de innerhtml */
 .video_info h1,
